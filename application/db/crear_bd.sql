@@ -6,25 +6,27 @@ CREATE TABLE cuestionarios (
 
 DROP TABLE IF EXISTS preguntas;
 CREATE TABLE preguntas (
-    cve_cuestionario integer,
     cve_pregunta serial,
+    cve_cuestionario integer,
     nom_pregunta text
 );
 
 DROP TABLE IF EXISTS valores_posibles;
 CREATE TABLE valores_posibles (
-    cve_pregunta integer,
     cve_valor serial,
+    cve_pregunta integer,
     nom_valor text,
     valor integer
 );
 
 DROP TABLE IF EXISTS periodos;
 CREATE TABLE periodos (
-    cve_dependencia integer,
     cve_periodo serial,
+    cve_dependencia integer,
     nom_periodo text,
-    fecha date
+    fecha_ini date,
+    fecha_fin date,
+    activo integer
 );
 
 DROP TABLE IF EXISTS dependencias;
@@ -42,8 +44,8 @@ CREATE TABLE respuestas (
 
 DROP TABLE IF EXISTS informantes;
 CREATE TABLE informantes (
-    cve_dependencia integer,
     cve_informante serial,
+    cve_dependencia integer,
     nom_informante text,
     departamento text,
     cargo text,
@@ -53,9 +55,9 @@ CREATE TABLE informantes (
 
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
+    cve_usuario serial, 
     cve_dependencia integer,
     cve_rol text,
-    cve_usuario serial, 
     nom_usuario text,
     usuario text,
     password text,
@@ -68,17 +70,18 @@ CREATE TABLE roles (
     nom_rol text
 );
 
-DROP TABLE IF EXISTS accesos;
-CREATE TABLE accesos (
-    cve_acceso serial,
-    nom_acceso text
+DROP TABLE IF EXISTS opciones_sistema;
+CREATE TABLE opciones_sistema (
+    cve_opcion serial,
+    cod_opcion text,
+    nom_opcion text
 );
 
-DROP TABLE IF EXISTS accesos_rol;
-CREATE TABLE accesos_rol (
+DROP TABLE IF EXISTS accesos_sistema;
+CREATE TABLE accesos_sistema (
     cve_acceso serial,
-    cod_opcion text,
-    cve_rol text
+    cve_rol text,
+    cod_opcion text
 );
 
 DROP TABLE IF EXISTS bitacora;
@@ -88,9 +91,8 @@ CREATE TABLE bitacora (
     hora time,
     origen text,
     usuario text,
-    usuario_nombre text,
-    dependencia text,
-    area text,
+    nom_usuario text,
+    nom_dependencia text,
     accion text,
     entidad text,
     valor text
