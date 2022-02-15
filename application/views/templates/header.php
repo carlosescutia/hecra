@@ -69,7 +69,7 @@
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
                         <?php } ?>
                         <?php if (in_array('05', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link ml-5" href="<?=base_url()?>catalogos/lista">Catálogos</a></li>
+                        <li class="nav-item"><a class="nav-link ml-5" href="<?=base_url()?>catalogos">Catálogos</a></li>
                         <?php } ?>
                     </ul>
                 </div>
