@@ -274,3 +274,7 @@ body {
     background-color: black;
 }
 
+.btn-catalogo:hover {
+    background-color: #D9D9D9;
+}
+
