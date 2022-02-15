@@ -7,7 +7,7 @@
             <h2>Aplicación</h2>
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <?php include "dummy/boton.php" ?>
+                    <?php include "dependencias/boton.php" ?>
                 </div>
                 <div class="col-md-4">
                     <?php include "dummy/boton.php" ?>
