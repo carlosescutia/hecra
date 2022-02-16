@@ -52,7 +52,7 @@
 
             <!-- opciones del menu -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="col-sm-6 mr-5">
+                <div class="col-sm-7 mr-5">
                     <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema Hecra Iplaneg</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
@@ -60,20 +60,20 @@
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Inicio</a></li>
                         <?php } ?>
                         <?php if (in_array('02', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>actores/lista">Actores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios">Cuestionarios</a></li>
                         <?php } ?>
                         <?php if (in_array('03', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>consejos/lista">Consejos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios_dependencia">Cuestionarios por dependencia</a></li>
                         <?php } ?>
                         <?php if (in_array('04', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes">Reportes</a></li>
                         <?php } ?>
                         <?php if (in_array('05', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link ml-5" href="<?=base_url()?>catalogos">Catálogos</a></li>
                         <?php } ?>
                     </ul>
                 </div>
-                <div class="col-sm-5 text-right">
+                <div class="col-sm-4 text-right">
                     <p class="m-2 text-white"><?php echo $nom_usuario ?> · <?php echo $nom_dependencia ?> | <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a></p>
                 </div>
             </div> <!-- opciones del menu -->
