@@ -22,9 +22,6 @@
                         <div class="col-sm-2 align-self-center">
                             <p class="small"><strong>Clave</strong></p>
                         </div>
-                        <div class="col-sm-2 align-self-center">
-                            <p class="small"><strong>Código</strong></p>
-                        </div>
                         <div class="col-sm-5 align-self-center">
                             <p class="small"><strong>Nombre</strong></p>
                         </div>
