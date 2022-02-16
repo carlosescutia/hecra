@@ -7,15 +7,16 @@ CREATE TABLE tipo_cuestionarios (
 DROP TABLE IF EXISTS preguntas;
 CREATE TABLE preguntas (
     cve_pregunta serial,
-    cve_cuestionario integer,
-    nom_pregunta text
+    cve_tipo_cuestionario integer,
+    num_pregunta integer,
+    texto_pregunta text
 );
 
 DROP TABLE IF EXISTS valores_posibles;
 CREATE TABLE valores_posibles (
     cve_valor serial,
     cve_pregunta integer,
-    nom_valor text,
+    texto_valor text,
     valor integer
 );
 
