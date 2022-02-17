@@ -10,7 +10,7 @@
                     <?php include "dependencias/boton.php" ?>
                 </div>
                 <div class="col-md-4">
-                    <?php include "tipo_cuestionarios/boton.php" ?>
+                    <?php include "cuestionarios/boton.php" ?>
                 </div>
             </div>
         </div>
