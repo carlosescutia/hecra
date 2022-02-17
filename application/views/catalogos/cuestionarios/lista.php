@@ -3,10 +3,10 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-10 text-left">
-                    <h1 class="h2">Tipo de cuestionarios</h1>
+                    <h1 class="h2">Cuestionarios</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <form method="post" action="<?= base_url() ?>tipo_cuestionarios/nuevo">
+                    <form method="post" action="<?= base_url() ?>cuestionarios/nuevo">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
                 </div>
@@ -29,17 +29,17 @@
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($tipo_cuestionarios as $tipo_cuestionarios_item) { ?>
+                <?php foreach ($cuestionarios as $cuestionarios_item) { ?>
                 <div class="col-sm-7 alternate-color">
                     <div class="row">
                         <div class="col-sm-2 align-self-center">
-                            <p><?= $tipo_cuestionarios_item['cve_tipo_cuestionario'] ?></p>
+                            <p><?= $cuestionarios_item['cve_cuestionario'] ?></p>
                         </div>
                         <div class="col-sm-5 align-self-center">
-                            <a href="<?=base_url()?>tipo_cuestionarios/detalle/<?=$tipo_cuestionarios_item['cve_tipo_cuestionario']?>"><?= $tipo_cuestionarios_item['nom_tipo_cuestionario'] ?></a>
+                            <a href="<?=base_url()?>cuestionarios/detalle/<?=$cuestionarios_item['cve_cuestionario']?>"><?= $cuestionarios_item['nom_cuestionario'] ?></a>
                         </div>
                         <div class="col-sm-1">
-                            <a style="color: #f00" href="<?= base_url() ?>tipo_cuestionarios/eliminar/<?= $tipo_cuestionarios_item['cve_tipo_cuestionario'] ?>/"><span data-feather="x-circle"></span></a>
+                            <a style="color: #f00" href="<?= base_url() ?>cuestionarios/eliminar/<?= $cuestionarios_item['cve_cuestionario'] ?>/"><span data-feather="x-circle"></span></a>
                         </div>
                     </div>
                 </div>
