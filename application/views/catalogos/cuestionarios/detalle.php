@@ -1,35 +1,39 @@
 <main role="main" class="ml-sm-auto px-4">
 
-    <form method="post" action="<?= base_url() ?>cuestionarios/guardar/<?= $cuestionarios['cve_cuestionario'] ?>">
-
-        <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
-            <div class="row">
-                <div class="col-md-10">
-                    <h1 class="h2">Editar cuestionario</h1>
-                </div>
-                <div class="col-md-2 text-right">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-
+    <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
         <div class="col-md-12">
-            <div class="form-group row">
-                <label for="cve_cuestionario" class="col-sm-2 col-form-label">Clave</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cve_cuestionario" id="cve_cuestionario" value="<?=$cuestionarios['cve_cuestionario'] ?>" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="nom_cuestionario" class="col-sm-2 col-form-label">Nombre</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="nom_cuestionario" id="nom_cuestionario" value="<?=$cuestionarios['nom_cuestionario'] ?>">
-                </div>
+            <div class="row">
+                <h2>Editar cuestionario</h2>
             </div>
         </div>
+    </div>
 
-    </form>
+    <div class="card mt-0 mb-3">
+        <form method="post" action="<?= base_url() ?>cuestionarios/guardar/<?= $cuestionarios['cve_cuestionario'] ?>">
+            <div class="card-header card-sistema">
+                <div class="row">
+                    <div class="col-md-10">
+                        <strong>Datos del cuestionario</strong>
+                    </div>
+                    <div class="col-md-2 text-right">
+                        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nom_consejo">Nombre</label>
+                        <input type="text" class="form-control" name="nom_cuestionario" id="nom_cuestionario" value="<?=$cuestionarios['nom_cuestionario'] ?>">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
+    <hr />
+
+    <?php include(APPPATH.'views/catalogos/preguntas/lista.php') ?>
 
     <hr />
 
