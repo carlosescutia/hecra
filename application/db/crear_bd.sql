@@ -1,13 +1,13 @@
-DROP TABLE IF EXISTS tipo_cuestionarios;
-CREATE TABLE tipo_cuestionarios (
-    cve_tipo_cuestionario serial,
-    nom_tipo_cuestionario text
+DROP TABLE IF EXISTS cuestionarios;
+CREATE TABLE cuestionarios (
+    cve_cuestionario serial,
+    nom_cuestionario text
 );
 
 DROP TABLE IF EXISTS preguntas;
 CREATE TABLE preguntas (
     cve_pregunta serial,
-    cve_tipo_cuestionario integer,
+    cve_cuestionario integer,
     num_pregunta integer,
     texto_pregunta text
 );
@@ -47,17 +47,17 @@ CREATE TABLE informantes (
     telefono text
 );
 
-DROP TABLE IF EXISTS cuestionarios;
-CREATE TABLE cuestionarios (
-    cve_cuestionario serial,
-    cve_tipo_cuestionario integer,
+DROP TABLE IF EXISTS cuestionarios_contestados;
+CREATE TABLE cuestionarios_contestados (
+    cve_cuestionario_contestado serial,
+    cve_cuestionario integer,
     cve_periodo integer
 
 );
 
 DROP TABLE IF EXISTS respuestas;
 CREATE TABLE respuestas (
-    cve_cuestionario integer,
+    cve_cuestionario_contestado integer,
     cve_pregunta integer,
     valor integer
 );
