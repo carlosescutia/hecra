@@ -14,10 +14,11 @@ CREATE TABLE preguntas (
 
 DROP TABLE IF EXISTS valores_posibles;
 CREATE TABLE valores_posibles (
-    cve_valor serial,
+    cve_valor_posible serial,
     cve_pregunta integer,
-    texto_valor text,
-    valor integer
+    num_valor_posible integer,
+    texto_valor_posible text,
+    valor_posible text
 );
 
 DROP TABLE IF EXISTS periodos;
