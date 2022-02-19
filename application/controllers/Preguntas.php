@@ -6,34 +6,8 @@ class Preguntas extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('preguntas_model');
+        $this->load->model('valores_posibles_model');
         $this->load->model('accesos_sistema_model');
-    }
-
-    public function index()
-    {
-        if ($this->session->userdata('logueado')) {
-            $cve_rol = $this->session->userdata('cve_rol');
-            $data['cve_usuario'] = $this->session->userdata('cve_usuario');
-            $data['cve_dependencia'] = $this->session->userdata('cve_dependencia');
-            $data['nom_dependencia'] = $this->session->userdata('nom_dependencia');
-            $data['cve_rol'] = $cve_rol;
-            $data['nom_usuario'] = $this->session->userdata('nom_usuario');
-            $data['error'] = $this->session->flashdata('error');
-            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
-            
-            if ($cve_rol != 'adm') {
-                redirect('inicio');
-            }
-
-            $cve_cuestionario = 1;
-            $data['preguntas'] = $this->preguntas_model->get_preguntas_cuestionario($cve_cuestionario);
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/preguntas/lista', $data);
-            $this->load->view('templates/footer');
-        } else {
-            redirect('inicio/login');
-        }
     }
 
     public function detalle($cve_pregunta)
@@ -53,6 +27,8 @@ class Preguntas extends CI_Controller {
             }
 
             $data['preguntas'] = $this->preguntas_model->get_pregunta($cve_pregunta);
+            $cve_pregunta = $data['preguntas']['cve_pregunta'];
+            $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_pregunta($cve_pregunta);
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/preguntas/detalle', $data);
@@ -62,7 +38,7 @@ class Preguntas extends CI_Controller {
         }
     }
 
-    public function nuevo()
+    public function nuevo($cve_cuestionario)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -77,6 +53,8 @@ class Preguntas extends CI_Controller {
             if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
+
+            $data['cve_cuestionario'] = $cve_cuestionario;
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/preguntas/nuevo', $data);
@@ -100,7 +78,11 @@ class Preguntas extends CI_Controller {
                 $this->preguntas_model->guardar($data, $cve_pregunta);
             }
 
-            redirect('cuestionarios/detalle/'.$preguntas['cve_cuestionario']);
+            if (is_null($cve_pregunta)) {
+                redirect('cuestionarios/detalle/'.$preguntas['cve_cuestionario']);
+            } else {
+                redirect('preguntas/detalle/'.$cve_pregunta);
+            }
 
         } else {
             redirect('inicio/login');
@@ -111,8 +93,10 @@ class Preguntas extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
 
+            $data['preguntas'] = $this->preguntas_model->get_pregunta($cve_pregunta);
+            $cve_cuestionario = $data['preguntas']['cve_cuestionario'];
             $this->preguntas_model->eliminar($cve_pregunta);
-            redirect('preguntas');
+            redirect('cuestionarios/detalle/'.$cve_cuestionario);
 
         } else {
             redirect('inicio/login');

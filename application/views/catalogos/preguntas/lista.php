@@ -5,7 +5,7 @@
                     <strong>Preguntas</strong>
                 </div>
                 <div class="col-md-2 text-right">
-                    <form method="post" action="<?= base_url() ?>preguntas/nuevo">
+                <form method="post" action="<?= base_url() ?>preguntas/nuevo/<?= $cuestionarios['cve_cuestionario'] ?>">
                         <button type="submit" class="btn btn-primary btn-sm">Nueva pregunta</button>
                     </form>
                 </div>
