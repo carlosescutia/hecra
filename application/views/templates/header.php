@@ -60,10 +60,7 @@
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Inicio</a></li>
                         <?php } ?>
                         <?php if (in_array('02', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios">Cuestionarios</a></li>
-                        <?php } ?>
-                        <?php if (in_array('03', $accesos_sistema_rol)) { ?>
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios_dependencia">Cuestionarios por dependencia</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios_contestados">Cuestionarios</a></li>
                         <?php } ?>
                         <?php if (in_array('04', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes">Reportes</a></li>
