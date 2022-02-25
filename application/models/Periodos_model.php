@@ -11,6 +11,15 @@ class Periodos_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_periodos_dependencia($cve_dependencia, $cve_rol) {
+        if ($cve_rol == 'adm' || $cve_rol == 'sup') {
+            $cve_dependencia = '%';
+        }
+        $sql = "select p.*, d.nom_dependencia from periodos p left join dependencias d on p.cve_dependencia = d.cve_dependencia where p.cve_dependencia::char LIKE ? order by p.cve_periodo;";
+        $query = $this->db->query($sql, array($cve_dependencia));
+        return $query->result_array();
+    }
+
     public function get_periodo($cve_periodo) {
         $sql = 'select p.*, d.nom_dependencia from periodos p left join dependencias d on p.cve_dependencia = d.cve_dependencia where p.cve_periodo = ?;';
         $query = $this->db->query($sql, array($cve_periodo));
