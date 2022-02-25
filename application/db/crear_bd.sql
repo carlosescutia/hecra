@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS cuestionarios;
 CREATE TABLE cuestionarios (
     cve_cuestionario serial,
-    nom_cuestionario text
+    nom_cuestionario text,
+    nom_corto_cuestionario text
 );
 
 DROP TABLE IF EXISTS preguntas;
@@ -9,7 +10,9 @@ CREATE TABLE preguntas (
     cve_pregunta serial,
     cve_cuestionario integer,
     num_pregunta integer,
-    texto_pregunta text
+    texto_pregunta text,
+    responde text,
+    guia text
 );
 
 DROP TABLE IF EXISTS valores_posibles;
