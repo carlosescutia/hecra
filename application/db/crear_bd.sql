@@ -5,9 +5,16 @@ CREATE TABLE cuestionarios (
     nom_corto_cuestionario text
 );
 
+DROP TABLE IF EXISTS tipo_preguntas;
+CREATE TABLE tipo_preguntas (
+    cve_tipo_pregunta serial,
+    nom_tipo_pregunta text
+);
+
 DROP TABLE IF EXISTS preguntas;
 CREATE TABLE preguntas (
     cve_pregunta serial,
+    cve_tipo_pregunta integer,
     cve_cuestionario integer,
     num_pregunta integer,
     texto_pregunta text,
@@ -22,6 +29,26 @@ CREATE TABLE valores_posibles (
     num_valor_posible integer,
     texto_valor_posible text,
     valor_posible text
+);
+
+DROP TABLE IF EXISTS subpreguntas;
+CREATE TABLE subpreguntas (
+    cve_subpregunta serial,
+    cve_pregunta integer,
+    cve_cuestionario integer,
+    num_subpregunta integer,
+    texto_subpregunta text,
+    responde text,
+    guia text
+);
+
+DROP TABLE IF EXISTS subvalores_posibles;
+CREATE TABLE subvalores_posibles (
+    cve_subvalor_posible serial,
+    cve_subpregunta integer,
+    num_subvalor_posible integer,
+    texto_subvalor_posible text,
+    subvalor_posible text
 );
 
 DROP TABLE IF EXISTS periodos;
@@ -56,16 +83,15 @@ CREATE TABLE cuestionarios_contestados (
     cve_cuestionario_contestado serial,
     cve_cuestionario integer,
     cve_periodo integer
-
 );
 
 DROP TABLE IF EXISTS respuestas;
 CREATE TABLE respuestas (
     cve_cuestionario_contestado integer,
     cve_pregunta integer,
-    valor integer
+    cve_subpregunta integer,
+    valor text
 );
-
 
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
