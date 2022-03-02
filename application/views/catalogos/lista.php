@@ -16,6 +16,11 @@
                     <?php include "periodos/boton.php" ?>
                 </div>
             </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <?php include "tipo_preguntas/boton.php" ?>
+                </div>
+            </div>
         </div>
         <div class="col-md-3 p-3 border bg-light">
             <h2>Sistema</h2>
