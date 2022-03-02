@@ -18,6 +18,7 @@
                         <tr>
                             <th scope="col">Número</th>
                             <th scope="col">Texto</th>
+                            <th scope="col">Tipo pregunta</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,7 @@
                         <tr>
                             <td><?= $preguntas_item['num_pregunta'] ?></td>
                             <td><a href="<?=base_url()?>preguntas/detalle/<?=$preguntas_item['cve_pregunta']?>"><?= $preguntas_item['texto_pregunta'] ?></a></td>
+                            <td><?= $preguntas_item['nom_tipo_pregunta'] ?></td>
                             <td><a style="color: #f00" href="<?= base_url() ?>preguntas/eliminar/<?= $preguntas_item['cve_pregunta'] ?>/"><span data-feather="x-circle"></span></a></td>
                         </tr>
                         <?php } ?>

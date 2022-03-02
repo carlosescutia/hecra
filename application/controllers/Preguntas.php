@@ -6,6 +6,7 @@ class Preguntas extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('preguntas_model');
+        $this->load->model('tipo_preguntas_model');
         $this->load->model('valores_posibles_model');
         $this->load->model('accesos_sistema_model');
     }
@@ -55,6 +56,7 @@ class Preguntas extends CI_Controller {
             }
 
             $data['cve_cuestionario'] = $cve_cuestionario;
+            $data['tipo_preguntas'] = $this->tipo_preguntas_model->get_tipo_preguntas();
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/preguntas/nuevo', $data);
@@ -71,9 +73,12 @@ class Preguntas extends CI_Controller {
             $preguntas = $this->input->post();
             if ($preguntas) {
                 $data = array(
+                    'cve_tipo_pregunta' => empty($preguntas['cve_tipo_pregunta']) ? null : $preguntas['cve_tipo_pregunta'],
                     'cve_cuestionario' => $preguntas['cve_cuestionario'],
                     'num_pregunta' => empty($preguntas['num_pregunta']) ? null : $preguntas['num_pregunta'],
-                    'texto_pregunta' => empty($preguntas['texto_pregunta']) ? null : $preguntas['texto_pregunta']
+                    'texto_pregunta' => empty($preguntas['texto_pregunta']) ? null : $preguntas['texto_pregunta'],
+                    'responde' => empty($preguntas['responde']) ? null : $preguntas['responde'],
+                    'guia' => empty($preguntas['guia']) ? null : $preguntas['guia']
                 );
                 $this->preguntas_model->guardar($data, $cve_pregunta);
             }

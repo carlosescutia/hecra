@@ -22,6 +22,12 @@
             </div>
             <div class="card-body">
                 <div class="form-group row">
+                    <label for="responde" class="col-sm-2 col-form-label">Tipo de pregunta</label>
+                    <div class="col-sm-10">
+                        <p><?= $preguntas['nom_tipo_pregunta'] ?></p>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="num_pregunta" class="col-sm-2 col-form-label">Número</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" name="num_pregunta" id="num_pregunta" value="<?=$preguntas['num_pregunta'] ?>">
@@ -33,9 +39,22 @@
                         <input type="text" class="form-control" name="texto_pregunta" id="texto_pregunta" value="<?=$preguntas['texto_pregunta'] ?>">
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="responde" class="col-sm-2 col-form-label">Quien responde la pregunta?</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="responde" id="responde" value="<?=$preguntas['responde'] ?>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="guia" class="col-sm-2 col-form-label">Guía de llenado</label>
+                    <div class="col-sm-10">
+                        <textarea rows="5" class="form-control" name="guia" id="guia"><?=$preguntas['guia'] ?></textarea>
+                    </div>
+                </div>
             </div>
 
             <input type="hidden" name="cve_cuestionario" value="<?=$preguntas['cve_cuestionario'] ?>">
+            <input type="hidden" name="cve_tipo_pregunta" value="<?=$preguntas['cve_tipo_pregunta'] ?>">
 
         </form>
     </div>
