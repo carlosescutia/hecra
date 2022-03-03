@@ -37,9 +37,7 @@ CREATE TABLE subpreguntas (
     cve_pregunta integer,
     cve_cuestionario integer,
     num_subpregunta integer,
-    texto_subpregunta text,
-    responde text,
-    guia text
+    texto_subpregunta text
 );
 
 DROP TABLE IF EXISTS subvalores_posibles;
