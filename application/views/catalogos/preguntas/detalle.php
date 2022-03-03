@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="form-group row">
-                    <label for="responde" class="col-sm-2 col-form-label">Tipo de pregunta</label>
+                    <label for="nom_tipo_pregunta" class="col-sm-2 col-form-label">Tipo de pregunta</label>
                     <div class="col-sm-10">
                         <p><?= $preguntas['nom_tipo_pregunta'] ?></p>
                     </div>
@@ -60,8 +60,19 @@
     </div>
 
     <hr />
-
-    <?php include(APPPATH.'views/catalogos/valores_posibles/lista.php') ?>
+    <?php switch( $preguntas['cve_tipo_pregunta'] ) {
+        case "1": // Opción múltiple, mostrar secc. valores posibles
+            include(APPPATH.'views/catalogos/valores_posibles/lista.php');
+            break;
+        case "2": // Texto libre, no mostrar nada
+            break;
+        case "3": // Múltiples respuestas opción múltiple, mostrar secc. subpreguntas
+            include(APPPATH.'views/catalogos/subpreguntas/lista.php');
+            break;
+        case "4": // Múltiples respuestas texto libre, mostrar secc. subpreguntas
+            include(APPPATH.'views/catalogos/subpreguntas/lista.php');
+            break;
+    } ?>
 
     <hr />
 
@@ -71,4 +82,4 @@
         </div>
     </div>
 
-</main>
+    </main>
