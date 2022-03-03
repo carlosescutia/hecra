@@ -1,18 +1,15 @@
 <?php
-class Preguntas extends CI_Controller {
+class Subpreguntas extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('preguntas_model');
-        $this->load->model('tipo_preguntas_model');
-        $this->load->model('valores_posibles_model');
         $this->load->model('subpreguntas_model');
         $this->load->model('accesos_sistema_model');
     }
 
-    public function detalle($cve_pregunta)
+    public function detalle($cve_subpregunta)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -28,20 +25,17 @@ class Preguntas extends CI_Controller {
                 redirect('inicio');
             }
 
-            $data['preguntas'] = $this->preguntas_model->get_pregunta($cve_pregunta);
-            $cve_pregunta = $data['preguntas']['cve_pregunta'];
-            $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_pregunta($cve_pregunta);
-            $data['subpreguntas'] = $this->subpreguntas_model->get_subpreguntas_pregunta($cve_pregunta);
+            $data['subpreguntas'] = $this->subpreguntas_model->get_subpregunta($cve_subpregunta);
 
             $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/preguntas/detalle', $data);
+            $this->load->view('catalogos/subpreguntas/detalle', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/login');
         }
     }
 
-    public function nuevo($cve_cuestionario)
+    public function nuevo($cve_pregunta)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -57,38 +51,34 @@ class Preguntas extends CI_Controller {
                 redirect('inicio');
             }
 
-            $data['cve_cuestionario'] = $cve_cuestionario;
-            $data['tipo_preguntas'] = $this->tipo_preguntas_model->get_tipo_preguntas();
+            $data['cve_pregunta'] = $cve_pregunta;
 
             $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/preguntas/nuevo', $data);
+            $this->load->view('catalogos/subpreguntas/nuevo', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/login');
         }
     }
 
-    public function guardar($cve_pregunta=null)
+    public function guardar($cve_subpregunta=null)
     {
         if ($this->session->userdata('logueado')) {
 
-            $preguntas = $this->input->post();
-            if ($preguntas) {
+            $subpreguntas = $this->input->post();
+            if ($subpreguntas) {
                 $data = array(
-                    'cve_tipo_pregunta' => empty($preguntas['cve_tipo_pregunta']) ? null : $preguntas['cve_tipo_pregunta'],
-                    'cve_cuestionario' => $preguntas['cve_cuestionario'],
-                    'num_pregunta' => empty($preguntas['num_pregunta']) ? null : $preguntas['num_pregunta'],
-                    'texto_pregunta' => empty($preguntas['texto_pregunta']) ? null : $preguntas['texto_pregunta'],
-                    'responde' => empty($preguntas['responde']) ? null : $preguntas['responde'],
-                    'guia' => empty($preguntas['guia']) ? null : $preguntas['guia']
+                    'cve_pregunta' => $subpreguntas['cve_pregunta'],
+                    'num_subpregunta' => empty($subpreguntas['num_subpregunta']) ? null : $subpreguntas['num_subpregunta'],
+                    'texto_subpregunta' => empty($subpreguntas['texto_subpregunta']) ? null : $subpreguntas['texto_subpregunta']
                 );
-                $this->preguntas_model->guardar($data, $cve_pregunta);
+                $this->subpreguntas_model->guardar($data, $cve_subpregunta);
             }
 
-            if (is_null($cve_pregunta)) {
-                redirect('cuestionarios/detalle/'.$preguntas['cve_cuestionario']);
+            if (is_null($cve_subpregunta)) {
+                redirect('preguntas/detalle/'.$subpreguntas['cve_pregunta']);
             } else {
-                redirect('preguntas/detalle/'.$cve_pregunta);
+                redirect('subpreguntas/detalle/'.$cve_subpregunta);
             }
 
         } else {
@@ -96,14 +86,14 @@ class Preguntas extends CI_Controller {
         }
     }
 
-    public function eliminar($cve_pregunta)
+    public function eliminar($cve_subpregunta)
     {
         if ($this->session->userdata('logueado')) {
 
-            $data['preguntas'] = $this->preguntas_model->get_pregunta($cve_pregunta);
-            $cve_cuestionario = $data['preguntas']['cve_cuestionario'];
-            $this->preguntas_model->eliminar($cve_pregunta);
-            redirect('cuestionarios/detalle/'.$cve_cuestionario);
+            $data['subpreguntas'] = $this->subpreguntas_model->get_subpregunta($cve_subpregunta);
+            $cve_pregunta = $data['subpreguntas']['cve_pregunta'];
+            $this->subpreguntas_model->eliminar($cve_subpregunta);
+            redirect('preguntas/detalle/'.$cve_pregunta);
 
         } else {
             redirect('inicio/login');
