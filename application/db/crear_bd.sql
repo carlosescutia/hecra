@@ -35,7 +35,6 @@ DROP TABLE IF EXISTS subpreguntas;
 CREATE TABLE subpreguntas (
     cve_subpregunta serial,
     cve_pregunta integer,
-    cve_cuestionario integer,
     num_subpregunta integer,
     texto_subpregunta text
 );
