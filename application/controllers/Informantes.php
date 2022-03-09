@@ -1,11 +1,10 @@
 <?php
-class Dependencias extends CI_Controller {
+class Informantes extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('dependencias_model');
         $this->load->model('informantes_model');
         $this->load->model('accesos_sistema_model');
     }
@@ -26,17 +25,17 @@ class Dependencias extends CI_Controller {
                 redirect('inicio');
             }
 
-            $data['dependencias'] = $this->dependencias_model->get_dependencias();
+            $data['informantes'] = $this->informantes_model->get_informantes();
 
             $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/dependencias/lista', $data);
+            $this->load->view('catalogos/informantes/lista', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/login');
         }
     }
 
-    public function detalle($cve_dependencia)
+    public function detalle($cve_informante)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -52,11 +51,10 @@ class Dependencias extends CI_Controller {
                 redirect('inicio');
             }
 
-            $data['dependencias'] = $this->dependencias_model->get_dependencia($cve_dependencia);
-            $data['informantes'] = $this->informantes_model->get_informante_dependencia($cve_dependencia);
+            $data['informantes'] = $this->informantes_model->get_informante($cve_informante);
 
             $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/dependencias/detalle', $data);
+            $this->load->view('catalogos/informantes/detalle', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/login');
@@ -80,52 +78,42 @@ class Dependencias extends CI_Controller {
             }
 
             $this->load->view('templates/header', $data);
-            $this->load->view('catalogos/dependencias/nuevo', $data);
+            $this->load->view('catalogos/informantes/nuevo', $data);
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/login');
         }
     }
 
-    public function guardar($cve_dependencia=null)
+    public function guardar($cve_informante=null)
     {
         if ($this->session->userdata('logueado')) {
 
-            $nueva_dependencia = is_null($cve_dependencia);
-
-            $dependencias = $this->input->post();
-            if ($dependencias) {
+            $informantes = $this->input->post();
+            if ($informantes) {
                 $data = array(
-                    'nom_dependencia' => empty($dependencias['nom_dependencia']) ? null : $dependencias['nom_dependencia']
-                );
-                $cve_dependencia = $this->dependencias_model->guardar($data, $cve_dependencia);
-            }
-
-            // En nueva dependencia, crear nuevo registro de informante
-            if ( $nueva_dependencia) {
-                $cve_informante=null;
-                $data = array(
-                    'cve_dependencia' => $cve_dependencia
+                    'cve_dependencia' => $informantes['cve_dependencia'],
+                    'nom_informante' => empty($informantes['nom_informante']) ? null : $informantes['nom_informante'],
+                    'departamento' => empty($informantes['departamento']) ? null : $informantes['departamento'],
+                    'cargo' => empty($informantes['cargo']) ? null : $informantes['cargo'],
+                    'email' => empty($informantes['email']) ? null : $informantes['email'],
+                    'telefono' => empty($informantes['telefono']) ? null : $informantes['telefono'],
                 );
                 $this->informantes_model->guardar($data, $cve_informante);
             }
-
-            redirect('dependencias/detalle/'.$cve_dependencia);
+            redirect('dependencias/detalle/'.$informantes['cve_dependencia']);
 
         } else {
             redirect('inicio/login');
         }
     }
 
-    public function eliminar($cve_dependencia)
+    public function eliminar($cve_informante)
     {
         if ($this->session->userdata('logueado')) {
 
-            // Primero eliminar el registro del informante
-            $this->informantes_model->eliminar_dependencia($cve_dependencia);
-
-            $this->dependencias_model->eliminar($cve_dependencia);
-            redirect('dependencias');
+            $this->informantes_model->eliminar($cve_informante);
+            redirect('informantes');
 
         } else {
             redirect('inicio/login');

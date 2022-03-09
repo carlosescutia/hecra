@@ -21,18 +21,19 @@ class Dependencias_model extends CI_Model {
     {
         if ($cve_dependencia) {
             $this->db->where('cve_dependencia', $cve_dependencia);
-            $result = $this->db->update('dependencias', $data);
+            $this->db->update('dependencias', $data);
+            $id = $cve_dependencia;
         } else {
-            $result = $this->db->insert('dependencias', $data);
+            $this->db->insert('dependencias', $data);
+            $id = $this->db->insert_id();
         }
-        return $result;
+        return $id;
     }
 
     public function eliminar($cve_dependencia)
     {
         $this->db->where('cve_dependencia', $cve_dependencia);
         $result = $this->db->delete('dependencias');
-        return $result;
     }
 
 }
