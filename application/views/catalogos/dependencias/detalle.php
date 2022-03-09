@@ -30,8 +30,9 @@
 
     </form>
 
-
     <hr />
+
+    <?php include(APPPATH.'views/catalogos/informantes/detalle.php') ?>
 
     <div class="form-group row">
         <div class="col-sm-10">
