@@ -7,6 +7,10 @@ class Cuestionarios_contestados extends CI_Controller {
         $this->load->model('accesos_sistema_model');
         $this->load->model('cuestionarios_contestados_model');
         $this->load->model('periodos_model');
+        $this->load->model('cuestionarios_model');
+        $this->load->model('preguntas_model');
+        $this->load->model('valores_posibles_model');
+        $this->load->model('respuestas_model');
     }
 
     public function index()
@@ -37,6 +41,7 @@ class Cuestionarios_contestados extends CI_Controller {
     public function detalle($cve_cuestionario_contestado)
     {
         if ($this->session->userdata('logueado')) {
+            $data['error_cuestionarios_contestados'] = $this->session->flashdata('error_cuestionarios_contestados');
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_cuestionario_contestado'] = $this->session->userdata('cve_cuestionario_contestado');
             $data['cve_dependencia'] = $this->session->userdata('cve_dependencia');
@@ -49,6 +54,10 @@ class Cuestionarios_contestados extends CI_Controller {
             $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['cuestionarios_contestados'] = $this->cuestionarios_contestados_model->get_cuestionario_contestado($cve_cuestionario_contestado);
+            $cve_cuestionario = $data['cuestionarios_contestados']['cve_cuestionario'];
+            $data['preguntas'] = $this->preguntas_model->get_preguntas_cuestionario($cve_cuestionario);
+            $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_cuestionario($cve_cuestionario);
+            $data['respuestas'] = $this->respuestas_model->get_respuestas_cuestionario_contestado($cve_cuestionario_contestado);
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/detalle', $data);
@@ -58,7 +67,7 @@ class Cuestionarios_contestados extends CI_Controller {
         }
     }
 
-    public function nuevo()
+    public function nuevo($cve_periodo)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -71,6 +80,9 @@ class Cuestionarios_contestados extends CI_Controller {
             $data['activo'] = $this->session->userdata('activo');
             $data['error'] = $this->session->flashdata('error');
             $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $data['cuestionarios'] = $this->cuestionarios_model->get_cuestionarios();
+            $data['cve_periodo'] = $cve_periodo;
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/nuevo', $data);
