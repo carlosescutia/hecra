@@ -57,9 +57,9 @@
                                 <?php
                                 foreach ($subpreguntas as $subpreguntas_item) {
                                     $valor_actual = "";
-                                    foreach ($respuestas as $respuestas_item) {
-                                        if ($subpreguntas_item['cve_pregunta'] == $respuestas_item['cve_pregunta'] &&  $subpreguntas_item['cve_subpregunta'] == $respuestas_item ['cve_subpregunta'] ) { 
-                                            $valor_actual = $respuestas_item['valor'];
+                                    foreach ($subrespuestas as $subrespuestas_item) {
+                                        if ($subpreguntas_item['cve_pregunta'] == $subrespuestas_item['cve_pregunta'] &&  $subpreguntas_item['cve_subpregunta'] == $subrespuestas_item ['cve_subpregunta'] ) { 
+                                            $valor_actual = $subrespuestas_item['valor'];
                                         }
                                     } 
                                     if ($subpreguntas_item['cve_pregunta'] == $preguntas_item['cve_pregunta']) { ?>
@@ -83,9 +83,9 @@
                                 <?php
                                 foreach ($subpreguntas as $subpreguntas_item) {
                                     $valor_actual = "";
-                                    foreach ($respuestas as $respuestas_item) {
-                                        if ($subpreguntas_item['cve_pregunta'] == $respuestas_item['cve_pregunta'] &&  $subpreguntas_item['cve_subpregunta'] == $respuestas_item ['cve_subpregunta'] ) { 
-                                            $valor_actual = $respuestas_item['valor'];
+                                    foreach ($subrespuestas as $subrespuestas_item) {
+                                        if ($subpreguntas_item['cve_pregunta'] == $subrespuestas_item['cve_pregunta'] &&  $subpreguntas_item['cve_subpregunta'] == $subrespuestas_item ['cve_subpregunta'] ) { 
+                                            $valor_actual = $subrespuestas_item['valor'];
                                         }
                                     } 
                                     if ($subpreguntas_item['cve_pregunta'] == $preguntas_item['cve_pregunta']) { ?>
