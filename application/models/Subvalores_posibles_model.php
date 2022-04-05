@@ -12,7 +12,7 @@ class Subvalores_posibles_model extends CI_Model {
     }
 
     public function get_subvalores_posibles_cuestionario($cve_cuestionario) {
-        $sql = 'select * from subvalores_posibles svp left join subpreguntas sp on svp.cve_subpregunta = sp.cve_subpregunta left join cuestionarios c on sp.cve_cuestionario = c.cve_cuestionario where c.cve_cuestionario = ? order by svp.num_subvalor_posible;';
+        $sql = 'select svp.* from subvalores_posibles svp left join subpreguntas sp on svp.cve_subpregunta = sp.cve_subpregunta left join preguntas p on sp.cve_pregunta = p.cve_pregunta left join cuestionarios c on p.cve_cuestionario = c.cve_cuestionario where c.cve_cuestionario = ? order by svp.cve_subpregunta, svp.num_subvalor_posible;';
         $query = $this->db->query($sql, array($cve_cuestionario));
         return $query->result_array();
     }
