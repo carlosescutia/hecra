@@ -11,6 +11,12 @@ class Valores_posibles_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_valores_posibles_cuestionario($cve_cuestionario) {
+        $sql = 'select * from valores_posibles vp left join preguntas p on vp.cve_pregunta = p.cve_pregunta left join cuestionarios c on p.cve_cuestionario = c.cve_cuestionario where c.cve_cuestionario = ? order by num_valor_posible;';
+        $query = $this->db->query($sql, array($cve_cuestionario));
+        return $query->result_array();
+    }
+
     public function get_valor_posible($cve_valor_posible) {
         $sql = 'select * from valores_posibles where cve_valor_posible = ?;';
         $query = $this->db->query($sql, array($cve_valor_posible));

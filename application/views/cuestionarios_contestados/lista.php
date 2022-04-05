@@ -27,9 +27,17 @@
                             </div>
                             <div class="row mb-3">
                                 <ul>
-                                    <?php foreach ($cuestionarios_contestados as $cuestionarios_contestados_item) { ?>
-                                        <?php if ($cuestionarios_contestados_item['cve_periodo'] == $periodos_item['cve_periodo']) { ?>
-                                            <li><?= $cuestionarios_contestados_item['cve_cuestionario_contestado'] ?> <?= $cuestionarios_contestados_item['nom_cuestionario'] ?></li>
+                                    <?php 
+                                    $cuest_actual = ''; 
+                                    $cont_cuest = 0;
+                                    foreach ($cuestionarios_contestados as $cuestionarios_contestados_item) {
+                                        if ($cuestionarios_contestados_item['cve_periodo'] == $periodos_item['cve_periodo']) {
+                                            if ($cuestionarios_contestados_item['nom_corto_cuestionario'] !== $cuest_actual) {
+                                                $cont_cuest = 0;
+                                                $cuest_actual = $cuestionarios_contestados_item['nom_corto_cuestionario'];
+                                            }
+                                            $cont_cuest++; ?>
+                                            <li><a href="<?= base_url() ?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados_item['cve_cuestionario_contestado'] ?>"><?= $cuestionarios_contestados_item['nom_corto_cuestionario'] ?> <?= $cont_cuest ?></a></li>
                                         <?php } ?>
                                     <?php } ?>
                                 </ul>
