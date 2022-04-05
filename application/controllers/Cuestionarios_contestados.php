@@ -11,6 +11,8 @@ class Cuestionarios_contestados extends CI_Controller {
         $this->load->model('preguntas_model');
         $this->load->model('valores_posibles_model');
         $this->load->model('respuestas_model');
+        $this->load->model('subpreguntas_model');
+        $this->load->model('subvalores_posibles_model');
     }
 
     public function index()
@@ -58,6 +60,8 @@ class Cuestionarios_contestados extends CI_Controller {
             $data['preguntas'] = $this->preguntas_model->get_preguntas_cuestionario($cve_cuestionario);
             $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_cuestionario($cve_cuestionario);
             $data['respuestas'] = $this->respuestas_model->get_respuestas_cuestionario_contestado($cve_cuestionario_contestado);
+            $data['subpreguntas'] = $this->subpreguntas_model->get_subpreguntas_cuestionario($cve_cuestionario);
+            $data['subvalores_posibles'] = $this->subvalores_posibles_model->get_subvalores_posibles_cuestionario($cve_cuestionario);
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/detalle', $data);
