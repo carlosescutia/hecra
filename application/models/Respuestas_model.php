@@ -6,7 +6,13 @@ class Respuestas_model extends CI_Model {
     }
 
     public function get_respuestas_cuestionario_contestado($cve_cuestionario_contestado) {
-        $sql = "select r.* from respuestas r where r.cve_cuestionario_contestado = ?";
+        $sql = "select r.* from respuestas r where r.cve_subpregunta::integer < 1 or r.cve_subpregunta is null and r.cve_cuestionario_contestado = ?";
+        $query = $this->db->query($sql, array($cve_cuestionario_contestado));
+        return $query->result_array();
+    }
+
+    public function get_subrespuestas_cuestionario_contestado($cve_cuestionario_contestado) {
+        $sql = "select r.* from respuestas r where r.cve_subpregunta::integer > 0 and r.cve_cuestionario_contestado = ?";
         $query = $this->db->query($sql, array($cve_cuestionario_contestado));
         return $query->result_array();
     }

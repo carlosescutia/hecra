@@ -62,6 +62,7 @@ class Cuestionarios_contestados extends CI_Controller {
             $data['respuestas'] = $this->respuestas_model->get_respuestas_cuestionario_contestado($cve_cuestionario_contestado);
             $data['subpreguntas'] = $this->subpreguntas_model->get_subpreguntas_cuestionario($cve_cuestionario);
             $data['subvalores_posibles'] = $this->subvalores_posibles_model->get_subvalores_posibles_cuestionario($cve_cuestionario);
+            $data['subrespuestas'] = $this->respuestas_model->get_subrespuestas_cuestionario_contestado($cve_cuestionario_contestado);
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/detalle', $data);
