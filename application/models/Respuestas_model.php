@@ -19,8 +19,14 @@ class Respuestas_model extends CI_Model {
 
     public function guardar($data, $cve_cuestionario_contestado, $cve_pregunta, $cve_subpregunta)
     {
-        if ($cve_cuestionario_contestado && $cve_pregunta && $cve_subpregunta) {
-            $this->db->where('cve_cuestionario_contestado', $cve_respuesta);
+        $this->db->where('cve_cuestionario_contestado', $cve_cuestionario_contestado);
+        $this->db->where('cve_pregunta', $cve_pregunta);
+        $this->db->where('cve_subpregunta', $cve_subpregunta);
+        $query = $this->db->get('respuestas');
+        $this->db->reset_query();
+
+        if ($query->num_rows() > 0) {
+            $this->db->where('cve_cuestionario_contestado', $cve_cuestionario_contestado);
             $this->db->where('cve_pregunta', $cve_pregunta);
             $this->db->where('cve_subpregunta', $cve_subpregunta);
             $this->db->update('respuestas', $data);

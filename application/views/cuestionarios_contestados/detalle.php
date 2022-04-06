@@ -1,6 +1,6 @@
 <main role="main" class="ml-sm-auto px-4">
 
-    <form method="post" action="<?= base_url() ?>cuestionarios_contestados/guardar/<?= $cuestionarios_contestados['cve_cuestionario_contestado'] ?>">
+    <form method="post" action="<?= base_url() ?>respuestas/guardar/<?= $cuestionarios_contestados['cve_cuestionario_contestado'] ?>">
 
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
@@ -116,6 +116,8 @@
                 </div>
             </div>
             <?php } ?>
+
+            <input type="hidden" name="cve_cuestionario_contestado" value="<?= $cuestionarios_contestados['cve_cuestionario_contestado'] ?>">
 
         </div>
 
