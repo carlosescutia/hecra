@@ -94,7 +94,8 @@ class Cuestionarios extends CI_Controller {
             $cuestionarios = $this->input->post();
             if ($cuestionarios) {
                 $data = array(
-                    'nom_cuestionario' => empty($cuestionarios['nom_cuestionario']) ? null : $cuestionarios['nom_cuestionario']
+                    'nom_cuestionario' => empty($cuestionarios['nom_cuestionario']) ? null : $cuestionarios['nom_cuestionario'],
+                    'nom_corto_cuestionario' => empty($cuestionarios['nom_corto_cuestionario']) ? null : $cuestionarios['nom_corto_cuestionario'],
                 );
                 $this->cuestionarios_model->guardar($data, $cve_cuestionario);
             }
