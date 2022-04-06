@@ -20,6 +20,12 @@
                     <input type="text" class="form-control" name="nom_cuestionario" id="nom_cuestionario">
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="nom_corto_cuestionario" class="col-sm-2 col-form-label">Nombre corto</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nom_corto_cuestionario" id="nom_corto_cuestionario">
+                </div>
+            </div>
         </div>
 
     </form>

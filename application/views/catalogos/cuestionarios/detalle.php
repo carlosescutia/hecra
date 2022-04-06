@@ -23,8 +23,14 @@
             <div class="card-body">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="nom_consejo">Nombre</label>
+                        <label for="nom_cuestionario">Nombre</label>
                         <input type="text" class="form-control" name="nom_cuestionario" id="nom_cuestionario" value="<?=$cuestionarios['nom_cuestionario'] ?>">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nom_corto_cuestionario">Nombre corto</label>
+                        <input type="text" class="form-control" name="nom_corto_cuestionario" id="nom_corto_cuestionario" value="<?=$cuestionarios['nom_corto_cuestionario'] ?>">
                     </div>
                 </div>
             </div>
