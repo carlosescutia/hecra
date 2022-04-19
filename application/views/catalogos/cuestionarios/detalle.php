@@ -39,7 +39,7 @@
 
     <hr />
 
-    <?php include(APPPATH.'views/catalogos/preguntas/lista.php') ?>
+    <?php include(APPPATH.'views/catalogos/secciones/lista.php') ?>
 
     <hr />
 

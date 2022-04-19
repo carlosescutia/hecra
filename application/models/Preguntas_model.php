@@ -5,9 +5,9 @@ class Preguntas_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_preguntas_cuestionario($cve_cuestionario) {
-        $sql = 'select p.*, tp.cve_tipo_pregunta, tp.nom_tipo_pregunta from preguntas p left join tipo_preguntas tp on p.cve_tipo_pregunta = tp.cve_tipo_pregunta where cve_cuestionario = ? order by num_pregunta;';
-        $query = $this->db->query($sql, array($cve_cuestionario));
+    public function get_preguntas_subseccion($cve_subseccion) {
+        $sql = 'select p.*, tp.cve_tipo_pregunta, tp.nom_tipo_pregunta from preguntas p left join tipo_preguntas tp on p.cve_tipo_pregunta = tp.cve_tipo_pregunta where cve_subseccion = ? order by num_pregunta;';
+        $query = $this->db->query($sql, array($cve_subseccion));
         return $query->result_array();
     }
 

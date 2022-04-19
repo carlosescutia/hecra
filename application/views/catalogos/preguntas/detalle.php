@@ -53,7 +53,7 @@
                 </div>
             </div>
 
-            <input type="hidden" name="cve_cuestionario" value="<?=$preguntas['cve_cuestionario'] ?>">
+            <input type="hidden" name="cve_subseccion" value="<?=$preguntas['cve_subseccion'] ?>">
             <input type="hidden" name="cve_tipo_pregunta" value="<?=$preguntas['cve_tipo_pregunta'] ?>">
 
         </form>
@@ -78,7 +78,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <a href="<?=base_url()?>cuestionarios/detalle/<?=$preguntas['cve_cuestionario'] ?>" class="btn btn-secondary">Volver</a>
+            <a href="<?=base_url()?>subsecciones/detalle/<?=$preguntas['cve_subseccion'] ?>" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 

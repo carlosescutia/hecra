@@ -41,7 +41,7 @@ class Preguntas extends CI_Controller {
         }
     }
 
-    public function nuevo($cve_cuestionario)
+    public function nuevo($cve_subseccion)
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
@@ -57,7 +57,7 @@ class Preguntas extends CI_Controller {
                 redirect('inicio');
             }
 
-            $data['cve_cuestionario'] = $cve_cuestionario;
+            $data['cve_subseccion'] = $cve_subseccion;
             $data['tipo_preguntas'] = $this->tipo_preguntas_model->get_tipo_preguntas();
 
             $this->load->view('templates/header', $data);
@@ -76,7 +76,7 @@ class Preguntas extends CI_Controller {
             if ($preguntas) {
                 $data = array(
                     'cve_tipo_pregunta' => empty($preguntas['cve_tipo_pregunta']) ? null : $preguntas['cve_tipo_pregunta'],
-                    'cve_cuestionario' => $preguntas['cve_cuestionario'],
+                    'cve_subseccion' => $preguntas['cve_subseccion'],
                     'num_pregunta' => empty($preguntas['num_pregunta']) ? null : $preguntas['num_pregunta'],
                     'texto_pregunta' => empty($preguntas['texto_pregunta']) ? null : $preguntas['texto_pregunta'],
                     'responde' => empty($preguntas['responde']) ? null : $preguntas['responde'],
@@ -86,7 +86,7 @@ class Preguntas extends CI_Controller {
             }
 
             if (is_null($cve_pregunta)) {
-                redirect('cuestionarios/detalle/'.$preguntas['cve_cuestionario']);
+                redirect('subsecciones/detalle/'.$preguntas['cve_subseccion']);
             } else {
                 redirect('preguntas/detalle/'.$cve_pregunta);
             }
@@ -101,9 +101,9 @@ class Preguntas extends CI_Controller {
         if ($this->session->userdata('logueado')) {
 
             $data['preguntas'] = $this->preguntas_model->get_pregunta($cve_pregunta);
-            $cve_cuestionario = $data['preguntas']['cve_cuestionario'];
+            $cve_subseccion = $data['preguntas']['cve_subseccion'];
             $this->preguntas_model->eliminar($cve_pregunta);
-            redirect('cuestionarios/detalle/'.$cve_cuestionario);
+            redirect('subsecciones/detalle/'.$cve_subseccion);
 
         } else {
             redirect('inicio/login');

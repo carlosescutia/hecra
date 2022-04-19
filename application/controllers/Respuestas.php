@@ -12,8 +12,9 @@ class Respuestas extends CI_Controller {
 
             $respuestas = $this->input->post();
             if ($respuestas) {
+                $cve_subseccion = $respuestas['cve_subseccion'];
                 foreach ($respuestas as $clave => $valor){
-                    if ( $clave !== 'cve_cuestionario_contestado' ) {
+                    if ( $clave !== 'cve_cuestionario_contestado' and $clave !== 'cve_subseccion' ) {
                         if (strpos($clave, "_")) {
                             $cve_pregunta = substr($clave, 0, strpos($clave, "_") );
                             $cve_subpregunta = substr($clave, strpos($clave, "_")+1 );
@@ -28,19 +29,10 @@ class Respuestas extends CI_Controller {
                             'valor' => $valor,
                         );
                         $this->respuestas_model->guardar($data, $cve_cuestionario_contestado, $cve_pregunta, $cve_subpregunta);
-                        /*
-                        echo "Guardar: ";
-                        print_r($data);
-                        echo "cve_cuestionario_contestado: " . $cve_cuestionario_contestado . "<br />";
-                        echo "cve_pregunta: " . $cve_pregunta . "<br />";
-                        echo "cve_subpregunta: " . $cve_subpregunta . "<br />";
-                        echo "valor: " . $valor . "<br />";
-                        echo "<br />";
-                         */
                     }
                 }
             }
-            redirect('cuestionarios_contestados');
+            redirect('cuestionarios_contestados/detalle/'.$cve_cuestionario_contestado.'/'.$cve_subseccion);
 
         } else {
             redirect('inicio/login');
