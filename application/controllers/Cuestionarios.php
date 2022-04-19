@@ -7,7 +7,7 @@ class Cuestionarios extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('accesos_sistema_model');
         $this->load->model('cuestionarios_model');
-        $this->load->model('preguntas_model');
+        $this->load->model('secciones_model');
     }
 
     public function index()
@@ -53,7 +53,7 @@ class Cuestionarios extends CI_Controller {
             }
 
             $data['cuestionarios'] = $this->cuestionarios_model->get_cuestionario($cve_cuestionario);
-            $data['preguntas'] = $this->preguntas_model->get_preguntas_cuestionario($cve_cuestionario);
+            $data['secciones'] = $this->secciones_model->get_secciones_cuestionario($cve_cuestionario);
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/cuestionarios/detalle', $data);

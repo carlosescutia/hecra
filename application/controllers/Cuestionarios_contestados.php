@@ -8,6 +8,8 @@ class Cuestionarios_contestados extends CI_Controller {
         $this->load->model('cuestionarios_contestados_model');
         $this->load->model('periodos_model');
         $this->load->model('cuestionarios_model');
+        $this->load->model('secciones_model');
+        $this->load->model('subsecciones_model');
         $this->load->model('preguntas_model');
         $this->load->model('valores_posibles_model');
         $this->load->model('respuestas_model');
@@ -40,7 +42,7 @@ class Cuestionarios_contestados extends CI_Controller {
         }
     }
 
-    public function detalle($cve_cuestionario_contestado)
+    public function detalle($cve_cuestionario_contestado, $cve_subseccion=0)
     {
         if ($this->session->userdata('logueado')) {
             $data['error_cuestionarios_contestados'] = $this->session->flashdata('error_cuestionarios_contestados');
@@ -57,12 +59,15 @@ class Cuestionarios_contestados extends CI_Controller {
 
             $data['cuestionarios_contestados'] = $this->cuestionarios_contestados_model->get_cuestionario_contestado($cve_cuestionario_contestado);
             $cve_cuestionario = $data['cuestionarios_contestados']['cve_cuestionario'];
-            $data['preguntas'] = $this->preguntas_model->get_preguntas_cuestionario($cve_cuestionario);
-            $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_cuestionario($cve_cuestionario);
+            $data['secciones'] = $this->secciones_model->get_secciones_cuestionario($cve_cuestionario);
+            $data['subsecciones'] = $this->subsecciones_model->get_subsecciones_cuestionario($cve_cuestionario);
+            $data['preguntas'] = $this->preguntas_model->get_preguntas_subseccion($cve_subseccion);
             $data['respuestas'] = $this->respuestas_model->get_respuestas_cuestionario_contestado($cve_cuestionario_contestado);
-            $data['subpreguntas'] = $this->subpreguntas_model->get_subpreguntas_cuestionario($cve_cuestionario);
-            $data['subvalores_posibles'] = $this->subvalores_posibles_model->get_subvalores_posibles_cuestionario($cve_cuestionario);
+            $data['valores_posibles'] = $this->valores_posibles_model->get_valores_posibles_subseccion($cve_subseccion);
+            $data['subpreguntas'] = $this->subpreguntas_model->get_subpreguntas_subseccion($cve_subseccion);
+            $data['subvalores_posibles'] = $this->subvalores_posibles_model->get_subvalores_posibles_subseccion($cve_subseccion);
             $data['subrespuestas'] = $this->respuestas_model->get_subrespuestas_cuestionario_contestado($cve_cuestionario_contestado);
+            $data['cve_subseccion'] = $cve_subseccion;
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/detalle', $data);

@@ -11,9 +11,9 @@ class Subpreguntas_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_subpreguntas_cuestionario($cve_cuestionario) {
-        $sql = 'select sp.*, tp.cve_tipo_pregunta from subpreguntas sp left join preguntas p on sp.cve_pregunta = p.cve_pregunta left join tipo_preguntas tp on tp.cve_tipo_pregunta = p.cve_tipo_pregunta where p.cve_cuestionario = ? order by cve_pregunta, num_subpregunta;';
-        $query = $this->db->query($sql, array($cve_cuestionario));
+    public function get_subpreguntas_subseccion($cve_subseccion) {
+        $sql = 'select sp.*, tp.cve_tipo_pregunta from subpreguntas sp left join preguntas p on sp.cve_pregunta = p.cve_pregunta left join tipo_preguntas tp on tp.cve_tipo_pregunta = p.cve_tipo_pregunta where p.cve_subseccion = ? order by cve_pregunta, num_subpregunta;';
+        $query = $this->db->query($sql, array($cve_subseccion));
         return $query->result_array();
     }
 

@@ -5,6 +5,22 @@ CREATE TABLE cuestionarios (
     nom_corto_cuestionario text
 );
 
+DROP TABLE IF EXISTS secciones;
+CREATE TABLE secciones (
+    cve_seccion serial,
+    cve_cuestionario integer,
+    num_seccion integer,
+    nom_seccion text
+);
+
+DROP TABLE IF EXISTS subsecciones;
+CREATE TABLE subsecciones (
+    cve_subseccion serial,
+    cve_seccion integer,
+    num_subseccion integer,
+    nom_subseccion text
+);
+
 DROP TABLE IF EXISTS tipo_preguntas;
 CREATE TABLE tipo_preguntas (
     cve_tipo_pregunta serial,
@@ -15,7 +31,7 @@ DROP TABLE IF EXISTS preguntas;
 CREATE TABLE preguntas (
     cve_pregunta serial,
     cve_tipo_pregunta integer,
-    cve_cuestionario integer,
+    cve_subseccion integer,
     num_pregunta integer,
     texto_pregunta text,
     responde text,
@@ -79,7 +95,9 @@ DROP TABLE IF EXISTS cuestionarios_contestados;
 CREATE TABLE cuestionarios_contestados (
     cve_cuestionario_contestado serial,
     cve_cuestionario integer,
-    cve_periodo integer
+    cve_periodo integer,
+    nombre text,
+    objetivo text
 );
 
 DROP TABLE IF EXISTS respuestas;
