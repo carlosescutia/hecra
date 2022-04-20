@@ -37,7 +37,7 @@
                                                 $cuest_actual = $cuestionarios_contestados_item['nom_corto_cuestionario'];
                                             }
                                             $cont_cuest++; ?>
-                                            <li><a href="<?= base_url() ?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados_item['cve_cuestionario_contestado'] ?>"><?= $cuestionarios_contestados_item['nom_corto_cuestionario'] ?> <?= $cont_cuest ?></a></li>
+                                            <li><a href="<?= base_url() ?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados_item['cve_cuestionario_contestado'] ?>"><?= $cuestionarios_contestados_item['nom_corto_cuestionario'] ?> <?= $cont_cuest ?>: <?= $cuestionarios_contestados_item['nombre'] ?></a></li>
                                         <?php } ?>
                                     <?php } ?>
                                 </ul>

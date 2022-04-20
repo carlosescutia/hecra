@@ -68,6 +68,7 @@ class Cuestionarios_contestados extends CI_Controller {
             $data['subvalores_posibles'] = $this->subvalores_posibles_model->get_subvalores_posibles_subseccion($cve_subseccion);
             $data['subrespuestas'] = $this->respuestas_model->get_subrespuestas_cuestionario_contestado($cve_cuestionario_contestado);
             $data['cve_subseccion'] = $cve_subseccion;
+            $data['semaforos'] = $this->cuestionarios_contestados_model->get_semaforos_cuestionario_contestado($cve_cuestionario_contestado);
 
             $this->load->view('templates/header', $data);
             $this->load->view('cuestionarios_contestados/detalle', $data);
@@ -110,7 +111,9 @@ class Cuestionarios_contestados extends CI_Controller {
             if ($cuestionarios_contestados) {
                 $data = array(
                     'cve_cuestionario' => $cuestionarios_contestados['cve_cuestionario'],
-                    'cve_periodo' => $cuestionarios_contestados['cve_periodo']
+                    'cve_periodo' => $cuestionarios_contestados['cve_periodo'],
+                    'nombre' => $cuestionarios_contestados['nombre'],
+                    'objetivo' => $cuestionarios_contestados['objetivo']
                 );
                 $this->cuestionarios_contestados_model->guardar($data, $cve_cuestionario_contestado);
             }

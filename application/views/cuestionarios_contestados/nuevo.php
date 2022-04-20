@@ -24,6 +24,18 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre del cuestionario a contestar">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="objetivo" class="col-sm-2 col-form-label">Objetivo</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="objetivo" id="objetivo" placeholder="Indique, en términos generales, cuáles son los objetivos del cuestionario">
+                </div>
+            </div>
         </div>
         <input type="hidden" name="cve_periodo" value="<?= $cve_periodo; ?>">
 
