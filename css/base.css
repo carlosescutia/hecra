@@ -252,10 +252,12 @@ body {
 }
 
 .semaforo {
-    height: 15px;
-    width: 15px;
+    height: 10px;
+    width: 10px;
     border-radius: 50%;
     display: inline-block;
+    margin-right: 10px;
+    border: 1px solid gray;
 }
 
 .verde {
@@ -266,12 +268,8 @@ body {
     background-color: yellow;
 }
 
-.rojo {
-    background-color: red;
-}
-
-.negro {
-    background-color: black;
+.blanco {
+    background-color: white;
 }
 
 .btn-catalogo:hover {

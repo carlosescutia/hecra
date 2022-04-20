@@ -5,7 +5,7 @@
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
                 <div class="col-md-10">
-                    <h1 class="h2">Contestar cuestionario</h1>
+                    <h4><?=$cuestionarios_contestados['nom_cuestionario'] ?>: <?=$cuestionarios_contestados['nombre'] ?> - <?=$cuestionarios_contestados['nom_periodo'] ?></h4>
                 </div>
                 <div class="col-md-2 text-right">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -14,9 +14,6 @@
         </div>
 
         <div class="col-md-12">
-            <div class="row mb-3">
-                <h4><?=$cuestionarios_contestados['nom_cuestionario'] ?> del <?=$cuestionarios_contestados['nom_periodo'] ?></h4>
-            </div>
             <div class="row">
                 <div class="col-md-3">
                     <ul class="list-unstyled">
@@ -26,7 +23,24 @@
                                 <ul class="list-unstyled">
                                 <?php foreach ($subsecciones as $subsecciones_item) { ?>
                                     <?php if ($subsecciones_item['cve_seccion'] == $secciones_item['cve_seccion']) { ?>
-                                    <li class="p-1 mb-1 mt-1 bg-light"><a href="<?= base_url()?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados['cve_cuestionario_contestado']?>/<?= $subsecciones_item['cve_subseccion']?>"><?= $subsecciones_item['nom_subseccion'] ?></a></li>
+                                        <?php 
+                                        $color='blanco';
+                                        foreach ($semaforos as $semaforos_item) {
+                                            if ($semaforos_item['cve_subseccion'] == $subsecciones_item['cve_subseccion']) {
+                                                $num_respuestas = $semaforos_item['respuestas'];
+                                                $num_preguntas = $semaforos_item['preguntas'];
+                                                if ($num_respuestas == $num_preguntas ) {
+                                                    $color = 'verde';
+                                                }
+                                                if ($num_respuestas < $num_preguntas ) {
+                                                    $color = 'amarillo';
+                                                }
+                                                if ($num_respuestas == 0 ) {
+                                                    $color = 'blanco';
+                                                }
+                                            }
+                                        } ?>
+                                        <li class="p-1 mb-1 mt-1 bg-light"><a href="<?= base_url()?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados['cve_cuestionario_contestado']?>/<?= $subsecciones_item['cve_subseccion']?>"><span class="semaforo <?= $color ?>"></span><?= $subsecciones_item['nom_subseccion'] ?> (<?=$num_respuestas?>/<?=$num_preguntas?>)</a></li>
                                     <?php } ?>
                                 <?php } ?>
                                 </ul>
