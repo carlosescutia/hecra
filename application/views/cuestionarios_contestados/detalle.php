@@ -15,10 +15,21 @@
 
         <div class="col-md-12">
             <div class="row">
+                <?php
+                $curr_seccion = '';
+                $curr_subseccion = '';
+                ?>
+
+                <!-- Panel de secciones y subsecciones -->
                 <div class="col-md-3">
                     <ul class="list-unstyled">
-                        <?php foreach ($secciones as $secciones_item) { ?>
-                            <li class="p-2 mb-2 mt-2 bg-primary text-white"><?= $secciones_item['nom_seccion'] ?></li>
+                        <?php foreach ($secciones as $secciones_item) { 
+                            if ($secciones_item['cve_seccion'] == $cve_seccion) {
+                                $curr_seccion = $secciones_item['nom_seccion']; ?>
+                                <li class="p-2 mb-2 mt-2 bg-primary text-white"><strong>* <?= $secciones_item['nom_seccion'] ?> *</strong></li>
+                            <?php } else { ?>
+                                <li class="p-2 mb-2 mt-2 bg-primary text-white"><?= $secciones_item['nom_seccion'] ?></li>
+                            <?php } ?>
                             <div class="col-md-12 ml-3">
                                 <ul class="list-unstyled">
                                 <?php foreach ($subsecciones as $subsecciones_item) { ?>
@@ -39,8 +50,13 @@
                                                     $color = 'blanco';
                                                 }
                                             }
-                                        } ?>
-                                        <li class="p-1 mb-1 mt-1 bg-light"><a href="<?= base_url()?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados['cve_cuestionario_contestado']?>/<?= $subsecciones_item['cve_subseccion']?>"><span class="semaforo <?= $color ?>"></span><?= $subsecciones_item['nom_subseccion'] ?> (<?=$num_respuestas?>/<?=$num_preguntas?>)</a></li>
+                                        } 
+                                        if ($subsecciones_item['cve_subseccion'] == $cve_subseccion) { 
+                                            $curr_subseccion = $subsecciones_item['nom_subseccion']; ?>
+                                            <li class="p-1 mb-1 mt-1 bg-light"><a href="<?= base_url()?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados['cve_cuestionario_contestado']?>/<?= $subsecciones_item['cve_subseccion']?>"><span class="semaforo <?= $color ?>"></span><strong><?= $subsecciones_item['nom_subseccion'] ?> (<?=$num_respuestas?>/<?=$num_preguntas?>)</strong></a></li>
+                                        <?php } else { ?>
+                                            <li class="p-1 mb-1 mt-1 bg-light"><a href="<?= base_url()?>cuestionarios_contestados/detalle/<?= $cuestionarios_contestados['cve_cuestionario_contestado']?>/<?= $subsecciones_item['cve_subseccion']?>"><span class="semaforo <?= $color ?>"></span><?= $subsecciones_item['nom_subseccion'] ?> (<?=$num_respuestas?>/<?=$num_preguntas?>)</a></li>
+                                        <?php } ?>
                                     <?php } ?>
                                 <?php } ?>
                                 </ul>
@@ -48,7 +64,13 @@
                         <?php } ?>
                     </ul>
                 </div>
+
+                <!-- Sección de preguntas -->
                 <div class="col-md-9">
+                    <div class="col-sm-12 pb-2 alternate-color">
+                        <h5><strong><?= $curr_seccion ?></strong> / <?= $curr_subseccion ?></h5>
+                        <hr />
+                    </div>
                     <?php foreach ($preguntas as $preguntas_item) { ?>
                     <div class="col-sm-12 pb-2 alternate-color">
                         <div class="row">
@@ -131,13 +153,13 @@
                             <div class="col-sm-12 mt-2 align-self-center">
                                 <p>
                                 <?php if ( $preguntas_item['responde'] ) { ?>
-                                    <strong>Responde:</strong> <?=$preguntas_item['responde'] ?>
-                                <?php } ?>
-                                <?php if ( $preguntas_item['responde'] && $preguntas_item['guia'] ) { ?>
-                                    <span>; </span>
+                                    <strong>Responde:</strong> <span class="mr-3"><?=$preguntas_item['responde'] ?></span>
                                 <?php } ?>
                                 <?php if ( $preguntas_item['guia'] ) { ?>
-                                    <strong>Guía de llenado:</strong> <?=$preguntas_item['guia'] ?>
+                                <a data-toggle="collapse" href="#mostrarguia<?=$preguntas_item['cve_pregunta']?>" aria-expanded="false" aria-controls="mostrarguia<?=$preguntas_item['cve_pregunta']?>"><strong>Guía de llenado:</strong></a>
+                                    <div class="collapse" id="mostrarguia<?=$preguntas_item['cve_pregunta']?>">
+                                        <?= $preguntas_item['guia'] ?>
+                                    </div>
                                 <?php } ?>
                                 </p>
                             </div>
