@@ -17,6 +17,12 @@ class Secciones_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_seccion_subseccion($cve_subseccion) {
+        $sql = 'select s.* from secciones s left join subsecciones ss on s.cve_seccion = ss.cve_seccion where ss.cve_subseccion = ?';
+        $query = $this->db->query($sql, array($cve_subseccion));
+        return $query->row_array();
+    }
+
     public function guardar($data, $cve_seccion)
     {
         if ($cve_seccion) {
