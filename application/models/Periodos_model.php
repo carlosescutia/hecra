@@ -26,6 +26,36 @@ class Periodos_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_respuestas_calidad($cve_periodo) {
+        $sql = 'select rc.* from respuestas_calidad rc where rc.cve_periodo = ? order by rc.cve_cuestionario_contestado, rc.cve_pregunta';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
+    public function get_promedio_respuestas_calidad($cve_periodo) {
+        $sql = 'select prc.* from promedio_respuestas_calidad prc where prc.cve_periodo = ?';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
+    public function get_datos_calidad_indicadores($cve_periodo) {
+        $sql = 'select dci.* from datos_calidad_indicadores dci where dci.cve_periodo = ?';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
+    public function get_calidad_subsecciones($cve_periodo) {
+        $sql = 'select css.* from calidad_subsecciones css where css.cve_periodo = ?';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
+    public function get_calidad_secciones($cve_periodo) {
+        $sql = 'select cs.* from calidad_secciones cs where cs.cve_periodo = ?';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
     public function guardar($data, $cve_periodo)
     {
         if ($cve_periodo) {

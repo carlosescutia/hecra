@@ -24,9 +24,11 @@
         <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-        <!-- bootstrap-combobox -->
-        <script src="<?=base_url()?>/js/bootstrap-combobox.js"></script>
-        <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/bootstrap-combobox.css" />
+        <!-- chartjs-gauge -->
+		<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+		<script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
+		<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
+
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XLFF90V4W"></script>

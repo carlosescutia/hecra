@@ -23,7 +23,11 @@
                     <?php } ?>
                         <div class="col-sm-11 ml-5 mb-3">
                             <div class="row">
-                                <p><span class="h6">Periodo:</span> <?= $periodos_item['nom_periodo'] ?></p>
+                                <?php if (in_array('0401', $accesos_sistema_rol)) { ?>
+                                    <a href="<?=base_url()?>evaluacion_calidad/calidad_global/<?=$periodos_item['cve_periodo']?>"><p><span class="h6">Periodo:</span> <?= $periodos_item['nom_periodo'] ?></p></a>
+                                <?php } else { ?>
+                                    <p><span class="h6">Periodo:</span> <?= $periodos_item['nom_periodo'] ?></p>
+                                <?php } ?>
                             </div>
                             <div class="row mb-3">
                                 <ul>
