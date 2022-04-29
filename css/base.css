@@ -260,12 +260,24 @@ body {
     border: 1px solid gray;
 }
 
+.semaforo_global {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 1px solid gray;
+}
+
 .verde {
     background-color: green;
 }
 
 .amarillo {
     background-color: yellow;
+}
+
+.rojo {
+    background-color: red;
 }
 
 .blanco {
