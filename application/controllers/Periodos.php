@@ -6,6 +6,8 @@ class Periodos extends CI_Controller {
         $this->load->model('periodos_model');
         $this->load->model('dependencias_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('secciones_model');
+        $this->load->model('subsecciones_model');
     }
 
     public function index()

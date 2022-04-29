@@ -1,3 +1,9 @@
+DROP VIEW IF EXISTS calidad_secciones;
+DROP VIEW IF EXISTS calidad_subsecciones;
+DROP VIEW IF EXISTS datos_calidad_indicadores;
+DROP VIEW IF EXISTS promedio_respuestas_calidad;
+DROP VIEW IF EXISTS respuestas_calidad;
+
 DROP TABLE IF EXISTS cuestionarios;
 CREATE TABLE cuestionarios (
     cve_cuestionario serial,
@@ -18,7 +24,8 @@ CREATE TABLE subsecciones (
     cve_subseccion serial,
     cve_seccion integer,
     num_subseccion integer,
-    nom_subseccion text
+    nom_subseccion text,
+    peso numeric(5,3)
 );
 
 DROP TABLE IF EXISTS tipo_preguntas;
@@ -100,6 +107,25 @@ CREATE TABLE cuestionarios_contestados (
     objetivo text
 );
 
+DROP TABLE IF EXISTS indicadores_calidad;
+CREATE TABLE indicadores_calidad (
+    cve_indicador_calidad serial,
+    cve_subseccion integer,
+    num_indicador_calidad integer,
+    nom_indicador_calidad text,
+    cve_pregunta integer,
+    cve_subpregunta integer,
+    valor_maximo integer,
+    peso numeric(5,3)
+);
+
+DROP TABLE IF EXISTS indicador_calidad_valor_grafico;
+CREATE TABLE indicador_calidad_valor_grafico (
+    cve_indicador_calidad integer,
+    valor integer,
+    valor_grafico integer
+);
+
 DROP TABLE IF EXISTS respuestas;
 CREATE TABLE respuestas (
     cve_cuestionario_contestado integer,
@@ -152,3 +178,79 @@ CREATE TABLE bitacora (
     entidad text,
     valor text
 );
+
+/*
+Vista respuestas_calidad
+---------------------------------
+Respuestas que corresponden a indicadores de calidad (o sea, las respuestas que cuentan para la evaluación), agregando: periodo, seccion, subseccion, pregunta, subpregunta, cuestionario_contestado.
+*/
+CREATE VIEW respuestas_calidad AS
+SELECT 
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, r.cve_pregunta, r.cve_subpregunta, cc.cve_cuestionario_contestado, r.valor 
+FROM 
+    respuestas r
+    inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta
+    left join subsecciones ss on ic.cve_subseccion = ss.cve_subseccion 
+    left join cuestionarios_contestados cc on r.cve_cuestionario_contestado = cc.cve_cuestionario_contestado
+    left join periodos p on cc.cve_periodo = p.cve_periodo ;
+
+
+/*
+Vista promedio_respuestas_calidad
+---------------------------------
+Promedio de respuestas que corresponden a indicadores de calidad (o sea, las respuestas que cuentan para la evaluación), agregando: periodo, subseccion padre de la pregunta, pregunta, subpregunta, indicador de calidad. Se agrupa por periodo, subseccion, pregunta, subpregunta y nombre de indicador de calidad.
+*/
+CREATE VIEW promedio_respuestas_calidad AS
+SELECT 
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, left(ss.nom_subseccion, 20) as nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, left(ic.nom_indicador_calidad, 25) as nom_indicador_calidad, avg(r.valor::float) as valor 
+FROM 
+    respuestas r 
+    inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
+    left join subsecciones ss on ic.cve_subseccion = ss.cve_subseccion 
+    left join cuestionarios_contestados cc on r.cve_cuestionario_contestado = cc.cve_cuestionario_contestado 
+    left join periodos p on cc.cve_periodo = p.cve_periodo 
+GROUP BY 
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, ss.nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, ic.nom_indicador_calidad ;
+
+
+/*
+Vista datos_calidad_indicadores
+-------------------------------
+Se obtienen los demás valores para el cálculo del dato de calidad de la sección: promedio de respuestas (obtenido de la vista promedio_respuestas_calidad), valor_grafico (para generar gráficos de calidad de las secciones), valor_max_sna (valor máximo si no aplica), peso, valor_ryp (valor reescalado y ponderado).
+*/
+CREATE VIEW datos_calidad_indicadores AS
+SELECT 
+    prc.cve_periodo, prc.cve_seccion, prc.cve_subseccion, prc.nom_subseccion, prc.cve_indicador_calidad, prc.nom_indicador_calidad, prc.valor, icvg.valor_grafico, (case when prc.valor is null then 0 else ic.valor_maximo end) as valor_max_sna, ic.peso, (case when prc.valor is null then 0 else (prc.valor / ic.valor_maximo) end) as valor_ryp 
+FROM 
+    promedio_respuestas_calidad prc 
+    inner join indicadores_calidad ic on prc.cve_pregunta = ic.cve_pregunta and prc.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
+    left join indicador_calidad_valor_grafico icvg on ic.cve_indicador_calidad = icvg.cve_indicador_calidad and prc.valor = icvg.valor ;
+
+
+/*
+Vista datos_calidad_subsecciones
+--------------------------------
+Se obtienen peso y valores reescalados y ponderados por subseccion.
+*/
+CREATE VIEW calidad_subsecciones AS
+SELECT 
+    dci.cve_periodo, dci.cve_seccion, dci.cve_subseccion, dci.nom_subseccion, max(ss.peso) as peso, sum( dci.peso * dci.valor_ryp) as valor_ryp 
+FROM 
+    datos_calidad_indicadores dci 
+    left join subsecciones ss on dci.cve_subseccion = ss.cve_subseccion 
+GROUP BY 
+    dci.cve_periodo, dci.cve_seccion, dci.cve_subseccion, dci.nom_subseccion ;
+
+
+/*
+Vista calidad_secciones
+-----------------------
+Se obtiene el dato de calidad por seccion.
+*/
+CREATE VIEW calidad_secciones AS
+SELECT
+    css.cve_periodo, css.cve_seccion, sum(css.peso * css.valor_ryp) as calidad_seccion
+FROM
+    calidad_subsecciones css
+GROUP BY
+    css.cve_periodo, css.cve_seccion ;
