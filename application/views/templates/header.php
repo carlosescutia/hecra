@@ -54,8 +54,8 @@
 
             <!-- opciones del menu -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="col-sm-7 mr-5">
-                    <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema Hecra Iplaneg</h5>
+                <div class="col-sm-6 mr-5">
+                    <h5 class="my-0 mr-md-auto texto-titulo">Sistema Hecra Iplaneg</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
                         <?php if (in_array('01', $accesos_sistema_rol)) { ?>
@@ -72,8 +72,8 @@
                         <?php } ?>
                     </ul>
                 </div>
-                <div class="col-sm-4 text-right">
-                    <p class="m-2 text-white"><?php echo $nom_usuario ?> · <?php echo $nom_dependencia ?> | <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a></p>
+                <div class="col-sm-5 text-right">
+                    <p class="m-2 texto-titulo"><?php echo $nom_usuario ?> · <?php echo $nom_dependencia ?> | <a class="m-2 texto-titulo" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a></p>
                 </div>
             </div> <!-- opciones del menu -->
         </nav>
