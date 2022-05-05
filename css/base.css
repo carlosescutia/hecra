@@ -11,21 +11,32 @@
 }
 
 html {
+    position: relative;
     min-height:100%;
     height: auto !important;
     height: 100%;
     text-align: left;
     margin-top: 0em;
-    margin-bottom: 0.25em;
     font-size: 0.85em;
 }
 
 body {
     padding-top: 50px;
     font-size: 0.875rem;
+    margin-bottom: 68px;
 }
 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 68px;
+    background-color: #f5f5f5;
+}
 
+.footer_margin {
+    height:80px;
+}
 
 .feather {
   width: 16px;
@@ -199,14 +210,13 @@ body {
 .logo_menu {
     height: 92px;
     width: 316;
-    padding-left: 20px;
-    padding-top: 8px;
+    padding-left: 38px;
+    padding-top: 14px;
     margin-right: 50px;
 }
 
 .logo {
-    width:316px;
-    height:77px ;
+    width:80%;
 }
 
 .fas {
@@ -218,7 +228,7 @@ body {
 /* FOOTER */
 .masfoot {
     background-color: #E4ECFA !important;
-    padding: 30px 0 !important;
+    padding: 15px 0 0 0 !important;
 }
 
 .masfoot p {
