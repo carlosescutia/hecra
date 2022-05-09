@@ -20,5 +20,10 @@
                 </div>
             </div>
         </div>
+        <hr class="mt-3 mb-3" />
+        <div class="col-md-12 text-center">
+            <h4 class="mb-5">Calidad asociada con la fuente de datos administrativa</h4>
+            <canvas id="calidad_subsecciones_fuente"></canvas>
+        </div>
     </div>
 </div>

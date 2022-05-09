@@ -23,13 +23,19 @@ class Evaluacion_calidad_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_calidad_global_secciones($cve_periodo) {
+    public function get_calidad_global_secciones_periodo($cve_periodo) {
         $sql = "select dci.cve_periodo, dci.cve_seccion, sum(valor_max_sna) as sum_valor_max_sna, sum(dci.valor) as sum_valor, ((sum(valor) * 100) / sum(valor_max_sna)) as indicador, (case when ((sum(valor) * 100) / sum(valor_max_sna)) < 25 then 0 when ((sum(valor) * 100) / sum(valor_max_sna)) < 50 then 1 when ((sum(valor) * 100) / sum(valor_max_sna)) < 70 then 2 when ((sum(valor) * 100) / sum(valor_max_sna)) < 80 then 3 when ((sum(valor) * 100) / sum(valor_max_sna)) < 90 then 4 when ((sum(valor) * 100) / sum(valor_max_sna)) >= 90 then 5 end) as indicador_calidad_seccion, count(*) filter (where valor=0) as sin_info, count(*) filter (where valor=1) as alertas from datos_calidad_indicadores dci where dci.cve_periodo = ? group by dci.cve_periodo, dci.cve_seccion ";
         $query = $this->db->query($sql, array($cve_periodo));
         return $query->result_array();
     }
 
-    public function get_indice_calidad_global($cve_periodo) {
+    public function get_valores_grafico_periodo($cve_periodo) {
+        $sql = 'select cve_seccion, cve_subseccion, nom_subseccion, avg(valor_grafico) from datos_calidad_indicadores where cve_periodo = ? group by cve_seccion, cve_subseccion, nom_subseccion order by cve_seccion, cve_subseccion';
+        $query = $this->db->query($sql, array($cve_periodo));
+        return $query->result_array();
+    }
+
+    public function get_indice_calidad_global_periodo($cve_periodo) {
         $sql = "select sum(calidad_seccion * 0.25) as valor from calidad_secciones where cve_periodo = ?";
         $query = $this->db->query($sql, array($cve_periodo));
         return $query->row_array();

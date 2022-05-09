@@ -25,7 +25,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
         <!-- chartjs-gauge -->
-		<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+		<script src="https://unpkg.com/chart.js@2.9.4/dist/Chart.bundle.js"></script>
 		<script src="https://unpkg.com/chartjs-gauge@0.3.0/dist/chartjs-gauge.js"></script>
 		<script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>
 
