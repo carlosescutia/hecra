@@ -25,8 +25,9 @@ class Evaluacion_calidad extends CI_Controller {
 
             $data['periodos'] = $this->periodos_model->get_periodo($cve_periodo);
 
-            $data['calidad_global_secciones'] = $this->evaluacion_calidad_model->get_calidad_global_secciones($cve_periodo);
-            $data['indice_calidad_global'] = $this->evaluacion_calidad_model->get_indice_calidad_global($cve_periodo);
+            $data['calidad_global_secciones'] = $this->evaluacion_calidad_model->get_calidad_global_secciones_periodo($cve_periodo);
+            $data['valores_grafico'] = $this->evaluacion_calidad_model->get_valores_grafico_periodo($cve_periodo);
+            $data['indice_calidad_global'] = $this->evaluacion_calidad_model->get_indice_calidad_global_periodo($cve_periodo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('evaluacion_calidad/calidad_global', $data);
