@@ -6,7 +6,7 @@
  * ****************************************/
 
 	var ctx = document.getElementById("calidad_producto").getContext("2d");
-    indicador_calidad_producto = '<?php echo $indicador_calidad_producto ?>';
+    indicador_calidad_producto = "<?php echo $calidad_pe[0]['valor'] ?>";
 
 	var chart = new Chart(ctx, {
 		type: 'gauge',
