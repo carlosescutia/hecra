@@ -93,7 +93,46 @@
         <?php } ?>
     </div>
 
-    <hr />
+    <div class="col-md-12 mb-3">
+        <?php
+        foreach ($secciones_calidad_pe as $secciones_calidad_pe_item) { ?>
+            <div class="row">
+                <div class="col-md-7 mt-5">
+                    <h4><?= $secciones_calidad_pe_item['nom_seccion'] ?></h4>
+                </div>
+            </div>
+            <div class="col-md-12 ml-3">
+                <div class="row">
+                    <?php
+                    foreach ($datos_calidad_indicadores_pe as $datos_calidad_indicadores_item) { ?>
+                        <div class="col-md-1">
+                            <?= $datos_calidad_indicadores_item['cve_subseccion'] ?>
+                        </div>
+                        <div class="col-md-2">
+                            <?= $datos_calidad_indicadores_item['nom_subseccion'] ?>
+                        </div>
+                        <div class="col-md-1">
+                            <?= $datos_calidad_indicadores_item['cve_indicador_calidad'] ?>
+                        </div>
+                        <div class="col-md-2">
+                            <?= $datos_calidad_indicadores_item['nom_indicador_calidad'] ?>
+                        </div>
+                        <div class="col-md-1">
+                            <?= $datos_calidad_indicadores_item['peso'] ?>
+                        </div>
+                        <div class="col-md-1">
+                            <?= $datos_calidad_indicadores_item['valor'] ?>
+                        </div>
+                        <div class="col-md-1">
+                            <?= $datos_calidad_indicadores_item['valor_ryp'] ?>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 
     <div class="form-group row">
         <div class="col-sm-10">

@@ -1,5 +1,7 @@
 <main role="main" class="ml-sm-auto px-4">
 
+    <?php include 'calculo_calidad_global_pe.php'; ?>
+    <?php include 'calculo_calidad_global_rraa.php'; ?>
     <?php include 'calculo_calidad_global.php'; ?>
 
     <div class="col-md-12 mb-5 pb-2 pt-3 border-bottom">
@@ -27,7 +29,7 @@
             </div>
             <div class="col-md-5">
                 <h4 class="mb-5 mt-3">Resultado: <?= $resultado_calidad_global ?></h4>
-                <h4>Indice de calidad global: <?= number_format($indice_calidad_global['valor'], 3) ?></h4>
+                <h4>Indice de calidad global: <?= number_format($indice_calidad_global_rraa['valor'] + ($calidad_pe[0]['valor_ryp'] * 0.25), 3) ?></h4>
             </div>
         </div>
     </div>

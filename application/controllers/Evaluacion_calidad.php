@@ -25,9 +25,10 @@ class Evaluacion_calidad extends CI_Controller {
 
             $data['periodos'] = $this->periodos_model->get_periodo($cve_periodo);
 
-            $data['calidad_global_secciones'] = $this->evaluacion_calidad_model->get_calidad_global_secciones_periodo($cve_periodo);
+            $data['calidad_global_secciones_rraa'] = $this->evaluacion_calidad_model->get_calidad_global_secciones_rraa_periodo($cve_periodo);
             $data['valores_grafico'] = $this->evaluacion_calidad_model->get_valores_grafico_periodo($cve_periodo);
-            $data['indice_calidad_global'] = $this->evaluacion_calidad_model->get_indice_calidad_global_periodo($cve_periodo);
+            $data['indice_calidad_global_rraa'] = $this->evaluacion_calidad_model->get_indice_calidad_global_rraa_periodo($cve_periodo);
+            $data['datos_calidad_indicadores_pe'] = $this->evaluacion_calidad_model->get_datos_calidad_indicadores_pe_periodo($cve_periodo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('evaluacion_calidad/calidad_global', $data);
@@ -60,6 +61,11 @@ class Evaluacion_calidad extends CI_Controller {
             $data['datos_calidad_indicadores'] = $this->periodos_model->get_datos_calidad_indicadores($cve_periodo);
             $data['calidad_subsecciones'] = $this->periodos_model->get_calidad_subsecciones($cve_periodo);
             $data['calidad_secciones'] = $this->periodos_model->get_calidad_secciones($cve_periodo);
+
+            $data['secciones_calidad_pe'] = $this->evaluacion_calidad_model->get_secciones_calidad_cuestionario(2);
+            $data['subsecciones_calidad_pe'] = $this->evaluacion_calidad_model->get_subsecciones_calidad_cuestionario(2);
+            $data['indicadores_calidad_pe'] = $this->evaluacion_calidad_model->get_indicadores_calidad_cuestionario(2);
+            $data['datos_calidad_indicadores_pe'] = $this->evaluacion_calidad_model->get_datos_calidad_indicadores_pe_periodo($cve_periodo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('evaluacion_calidad/indicadores_calidad', $data);
