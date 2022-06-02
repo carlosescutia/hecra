@@ -1,6 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|css|js|doc|img|robots\.txt)
-RewriteRule ^(.*)$ index.php?/$1 [L]
-AddDefaultCharset UTF-8
-
-SetEnvIf Server_Addr ^192\.168\.56\.101$ CI_ENV=development
