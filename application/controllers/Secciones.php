@@ -71,8 +71,8 @@ class Secciones extends CI_Controller {
             if ($secciones) {
                 $data = array(
                     'cve_cuestionario' => $secciones['cve_cuestionario'],
-                    'num_seccion' => empty($secciones['num_seccion']) ? null : $secciones['num_seccion'],
-                    'nom_seccion' => empty($secciones['nom_seccion']) ? null : $secciones['nom_seccion']
+                    'num_seccion' => $secciones['num_seccion'],
+                    'nom_seccion' => $secciones['nom_seccion']
                 );
                 $this->secciones_model->guardar($data, $cve_seccion);
             }

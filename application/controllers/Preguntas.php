@@ -75,12 +75,12 @@ class Preguntas extends CI_Controller {
             $preguntas = $this->input->post();
             if ($preguntas) {
                 $data = array(
-                    'cve_tipo_pregunta' => empty($preguntas['cve_tipo_pregunta']) ? null : $preguntas['cve_tipo_pregunta'],
+                    'cve_tipo_pregunta' => $preguntas['cve_tipo_pregunta'],
                     'cve_subseccion' => $preguntas['cve_subseccion'],
-                    'num_pregunta' => empty($preguntas['num_pregunta']) ? null : $preguntas['num_pregunta'],
-                    'texto_pregunta' => empty($preguntas['texto_pregunta']) ? null : $preguntas['texto_pregunta'],
-                    'responde' => empty($preguntas['responde']) ? null : $preguntas['responde'],
-                    'guia' => empty($preguntas['guia']) ? null : $preguntas['guia']
+                    'num_pregunta' => $preguntas['num_pregunta'],
+                    'texto_pregunta' => $preguntas['texto_pregunta'],
+                    'responde' => $preguntas['responde'],
+                    'guia' => $preguntas['guia']
                 );
                 $this->preguntas_model->guardar($data, $cve_pregunta);
             }

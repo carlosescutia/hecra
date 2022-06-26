@@ -71,8 +71,8 @@ class Subsecciones extends CI_Controller {
             if ($subsecciones) {
                 $data = array(
                     'cve_seccion' => $subsecciones['cve_seccion'],
-                    'num_subseccion' => empty($subsecciones['num_subseccion']) ? null : $subsecciones['num_subseccion'],
-                    'nom_subseccion' => empty($subsecciones['nom_subseccion']) ? null : $subsecciones['nom_subseccion']
+                    'num_subseccion' => $subsecciones['num_subseccion'],
+                    'nom_subseccion' => $subsecciones['nom_subseccion']
                 );
                 $this->subsecciones_model->guardar($data, $cve_subseccion);
             }

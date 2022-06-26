@@ -68,7 +68,7 @@ class Tipo_preguntas extends CI_Controller {
             $tipo_preguntas = $this->input->post();
             if ($tipo_preguntas) {
                 $data = array(
-                    'nom_tipo_pregunta' => empty($tipo_preguntas['nom_tipo_pregunta']) ? null : $tipo_preguntas['nom_tipo_pregunta']
+                    'nom_tipo_pregunta' => $tipo_preguntas['nom_tipo_pregunta']
                 );
                 $this->tipo_preguntas_model->guardar($data, $cve_tipo_pregunta);
             }

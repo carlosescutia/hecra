@@ -97,11 +97,11 @@ class Usuarios extends CI_Controller {
             $usuarios = $this->input->post();
             if ($usuarios) {
                 $data = array(
-                    'cve_dependencia' => empty($usuarios['cve_dependencia']) ? null : $usuarios['cve_dependencia'],
-                    'cve_rol' => empty($usuarios['cve_rol']) ? null : $usuarios['cve_rol'],
-                    'nom_usuario' => empty($usuarios['nom_usuario']) ? null : $usuarios['nom_usuario'],
-                    'usuario' => empty($usuarios['usuario']) ? null : $usuarios['usuario'],
-                    'password' => empty($usuarios['password']) ? null : $usuarios['password'],
+                    'cve_dependencia' => $usuarios['cve_dependencia'],
+                    'cve_rol' => $usuarios['cve_rol'],
+                    'nom_usuario' => $usuarios['nom_usuario'],
+                    'usuario' => $usuarios['usuario'],
+                    'password' => $usuarios['password'],
                     'activo' => empty($usuarios['activo']) ? '0' : $usuarios['activo']
                 );
                 $this->usuarios_model->guardar($data, $cve_usuario);

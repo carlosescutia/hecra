@@ -71,8 +71,8 @@ class Accesos_sistema extends CI_Controller {
             $accesos_sistema = $this->input->post();
             if ($accesos_sistema) {
                 $data = array(
-                    'cod_opcion' => empty($accesos_sistema['cod_opcion']) ? null : $accesos_sistema['cod_opcion'],
-                    'cve_rol' => empty($accesos_sistema['cve_rol']) ? null : $accesos_sistema['cve_rol']
+                    'cod_opcion' => $accesos_sistema['cod_opcion'],
+                    'cve_rol' => $accesos_sistema['cve_rol']
                 );
                 $this->accesos_sistema_model->guardar($data, $cve_acceso);
             }

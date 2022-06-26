@@ -93,11 +93,11 @@ class Informantes extends CI_Controller {
             if ($informantes) {
                 $data = array(
                     'cve_dependencia' => $informantes['cve_dependencia'],
-                    'nom_informante' => empty($informantes['nom_informante']) ? null : $informantes['nom_informante'],
-                    'departamento' => empty($informantes['departamento']) ? null : $informantes['departamento'],
-                    'cargo' => empty($informantes['cargo']) ? null : $informantes['cargo'],
-                    'email' => empty($informantes['email']) ? null : $informantes['email'],
-                    'telefono' => empty($informantes['telefono']) ? null : $informantes['telefono'],
+                    'nom_informante' => $informantes['nom_informante'],
+                    'departamento' => $informantes['departamento'],
+                    'cargo' => $informantes['cargo'],
+                    'email' => $informantes['email'],
+                    'telefono' => $informantes['telefono'],
                 );
                 $this->informantes_model->guardar($data, $cve_informante);
             }

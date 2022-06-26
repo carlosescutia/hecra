@@ -96,7 +96,7 @@ class Dependencias extends CI_Controller {
             $dependencias = $this->input->post();
             if ($dependencias) {
                 $data = array(
-                    'nom_dependencia' => empty($dependencias['nom_dependencia']) ? null : $dependencias['nom_dependencia']
+                    'nom_dependencia' => $dependencias['nom_dependencia']
                 );
                 $cve_dependencia = $this->dependencias_model->guardar($data, $cve_dependencia);
             }
