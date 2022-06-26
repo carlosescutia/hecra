@@ -186,7 +186,7 @@ Respuestas que corresponden a indicadores de calidad (o sea, las respuestas que 
 */
 CREATE VIEW respuestas_calidad AS
 SELECT 
-    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, r.cve_pregunta, r.cve_subpregunta, cc.cve_cuestionario_contestado, r.valor 
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, r.cve_pregunta, r.cve_subpregunta, cc.cve_cuestionario_contestado, (case when r.valor in ('','-') then null else r.valor end) as valor 
 FROM 
     respuestas r
     inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta
@@ -202,7 +202,7 @@ Promedio de respuestas que corresponden a indicadores de calidad (o sea, las res
 */
 CREATE VIEW promedio_respuestas_calidad AS
 SELECT 
-    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, left(ss.nom_subseccion, 20) as nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, left(ic.nom_indicador_calidad, 25) as nom_indicador_calidad, avg(r.valor::float) as valor
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, left(ss.nom_subseccion, 20) as nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, left(ic.nom_indicador_calidad, 25) as nom_indicador_calidad, avg(case when r.valor in ('','-') then null else r.valor::float end) as valor
 FROM 
     respuestas r 
     inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
