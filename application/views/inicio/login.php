@@ -77,7 +77,7 @@
             <img class="mb-4" src="<?=base_url()?>img/gto_iplaneg.png" alt="iplaneg">
             <h1 class="h3 mb-3 font-weight-normal">Inicie su sesión</h1>
             <label for="inputEmail" class="sr-only">Usuario</label>
-            <input name="usuario" class="form-control" placeholder="Correo electrónico" required autofocus>
+            <input name="usuario" class="form-control" placeholder="Usuario" required autofocus>
             <label for="inputPassword" class="sr-only">Contraseña</label>
             <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
