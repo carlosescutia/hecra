@@ -4,6 +4,7 @@ composer.lock
 metadatos/*
 fichas/*
 planes_mejora/*
+!planes_mejora/.keep
 
 application/cache/*
 !application/cache/index.html
