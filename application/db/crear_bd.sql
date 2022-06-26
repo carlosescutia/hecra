@@ -186,7 +186,7 @@ Respuestas que corresponden a indicadores de calidad (o sea, las respuestas que 
 */
 CREATE VIEW respuestas_calidad AS
 SELECT 
-    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, r.cve_pregunta, r.cve_subpregunta, cc.cve_cuestionario_contestado, r.valor, r.valor2 
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, r.cve_pregunta, r.cve_subpregunta, cc.cve_cuestionario_contestado, r.valor 
 FROM 
     respuestas r
     inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta
@@ -202,7 +202,7 @@ Promedio de respuestas que corresponden a indicadores de calidad (o sea, las res
 */
 CREATE VIEW promedio_respuestas_calidad AS
 SELECT 
-    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, left(ss.nom_subseccion, 20) as nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, left(ic.nom_indicador_calidad, 25) as nom_indicador_calidad, avg(r.valor::float) as valor, avg(r.valor2::float) as valor2
+    p.cve_periodo, ss.cve_seccion, ss.cve_subseccion, left(ss.nom_subseccion, 20) as nom_subseccion, r.cve_pregunta, r.cve_subpregunta, ic.cve_indicador_calidad, left(ic.nom_indicador_calidad, 25) as nom_indicador_calidad, avg(r.valor::float) as valor
 FROM 
     respuestas r 
     inner join indicadores_calidad ic on r.cve_pregunta = ic.cve_pregunta and r.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
@@ -220,7 +220,7 @@ Se obtienen los demás valores para el cálculo del dato de calidad de la secci�
 */
 CREATE VIEW datos_calidad_indicadores AS
 SELECT 
-    prc.cve_periodo, prc.cve_seccion, prc.cve_subseccion, prc.nom_subseccion, prc.cve_indicador_calidad, prc.nom_indicador_calidad, prc.valor, prc.valor2, icvg.valor_grafico, (case when prc.valor is null then 0 else ic.valor_maximo end) as valor_max_sna, ic.peso, (case when prc.valor is null then 0 else (prc.valor / ic.valor_maximo) end) as valor_ryp 
+    prc.cve_periodo, prc.cve_seccion, prc.cve_subseccion, prc.nom_subseccion, prc.cve_indicador_calidad, prc.nom_indicador_calidad, prc.valor, icvg.valor_grafico, (case when prc.valor is null then 0 else ic.valor_maximo end) as valor_max_sna, ic.peso, (case when prc.valor is null then 0 else (prc.valor / ic.valor_maximo) end) as valor_ryp 
 FROM 
     promedio_respuestas_calidad prc 
     inner join indicadores_calidad ic on prc.cve_pregunta = ic.cve_pregunta and prc.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
