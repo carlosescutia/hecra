@@ -13,7 +13,7 @@ class Evaluacion_calidad extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $cve_rol = $this->session->userdata('cve_rol');
-            $data['cve_periodo'] = $this->session->userdata('cve_periodo');
+            $data['cve_periodo'] = $cve_periodo;
             $data['cve_dependencia'] = $this->session->userdata('cve_dependencia');
             $data['nom_dependencia'] = $this->session->userdata('nom_dependencia');
             $data['nom_usuario'] = $this->session->userdata('nom_usuario');

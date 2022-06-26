@@ -66,7 +66,14 @@
                 <?php include 'datos.php'; ?>
             </div>
             <div class="col-md-5 mb-3">
-                <?php include 'producto.php'; ?>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <?php include 'producto.php'; ?>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <?php include 'plan_mejora.php'; ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
