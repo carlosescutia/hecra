@@ -100,10 +100,10 @@ class Periodos extends CI_Controller {
             $periodos = $this->input->post();
             if ($periodos) {
                 $data = array(
-                    'cve_dependencia' => empty($periodos['cve_dependencia']) ? null : $periodos['cve_dependencia'],
-                    'nom_periodo' => empty($periodos['nom_periodo']) ? null : $periodos['nom_periodo'],
-                    'fecha_ini' => empty($periodos['fecha_ini']) ? null : $periodos['fecha_ini'],
-                    'fecha_fin' => empty($periodos['fecha_fin']) ? null : $periodos['fecha_fin'],
+                    'cve_dependencia' => $periodos['cve_dependencia'],
+                    'nom_periodo' => $periodos['nom_periodo'],
+                    'fecha_ini' => $periodos['fecha_ini'],
+                    'fecha_fin' => $periodos['fecha_fin'],
                     'activo' => empty($periodos['activo']) ? '0' : $periodos['activo']
                 );
                 $this->periodos_model->guardar($data, $cve_periodo);

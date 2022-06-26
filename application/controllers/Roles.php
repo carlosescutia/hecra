@@ -92,7 +92,7 @@ class Roles extends CI_Controller {
             $roles = $this->input->post();
             if ($roles) {
                 $data = array(
-                    'nom_rol' => empty($roles['nom_rol']) ? null : $roles['nom_rol']
+                    'nom_rol' => $roles['nom_rol']
                 );
                 $this->roles_model->guardar($data, $cve_rol);
             }

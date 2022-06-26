@@ -69,9 +69,9 @@ class Subvalores_posibles extends CI_Controller {
             if ($subvalores_posibles) {
                 $data = array(
                     'cve_subpregunta' => $subvalores_posibles['cve_subpregunta'],
-                    'num_subvalor_posible' => empty($subvalores_posibles['num_subvalor_posible']) ? null : $subvalores_posibles['num_subvalor_posible'],
-                    'texto_subvalor_posible' => empty($subvalores_posibles['texto_subvalor_posible']) ? null : $subvalores_posibles['texto_subvalor_posible'],
-                    'subvalor_posible' => empty($subvalores_posibles['subvalor_posible']) ? null : $subvalores_posibles['subvalor_posible']
+                    'num_subvalor_posible' => $subvalores_posibles['num_subvalor_posible'],
+                    'texto_subvalor_posible' => $subvalores_posibles['texto_subvalor_posible'],
+                    'subvalor_posible' => $subvalores_posibles['subvalor_posible']
                 );
                 $this->subvalores_posibles_model->guardar($data, $cve_subvalor_posible);
             }

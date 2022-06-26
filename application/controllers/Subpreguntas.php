@@ -71,8 +71,8 @@ class Subpreguntas extends CI_Controller {
             if ($subpreguntas) {
                 $data = array(
                     'cve_pregunta' => $subpreguntas['cve_pregunta'],
-                    'num_subpregunta' => empty($subpreguntas['num_subpregunta']) ? null : $subpreguntas['num_subpregunta'],
-                    'texto_subpregunta' => empty($subpreguntas['texto_subpregunta']) ? null : $subpreguntas['texto_subpregunta']
+                    'num_subpregunta' => $subpreguntas['num_subpregunta'],
+                    'texto_subpregunta' => $subpreguntas['texto_subpregunta']
                 );
                 $this->subpreguntas_model->guardar($data, $cve_subpregunta);
             }

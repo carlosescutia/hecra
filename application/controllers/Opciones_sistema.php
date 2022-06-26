@@ -92,8 +92,8 @@ class Opciones_sistema extends CI_Controller {
             $opciones_sistema = $this->input->post();
             if ($opciones_sistema) {
                 $data = array(
-                    'cod_opcion' => empty($opciones_sistema['cod_opcion']) ? null : $opciones_sistema['cod_opcion'],
-                    'nom_opcion' => empty($opciones_sistema['nom_opcion']) ? null : $opciones_sistema['nom_opcion']
+                    'cod_opcion' => $opciones_sistema['cod_opcion'],
+                    'nom_opcion' => $opciones_sistema['nom_opcion']
                 );
                 $this->opciones_sistema_model->guardar($data, $cve_opcion);
             }

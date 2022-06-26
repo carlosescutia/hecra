@@ -65,13 +65,13 @@ class Valores_posibles extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
 
-            $valores_posibles = $this->input->post();
+            $valores_posibles = $this->input->post(null, true);
             if ($valores_posibles) {
                 $data = array(
                     'cve_pregunta' => $valores_posibles['cve_pregunta'],
-                    'num_valor_posible' => empty($valores_posibles['num_valor_posible']) ? null : $valores_posibles['num_valor_posible'],
-                    'texto_valor_posible' => empty($valores_posibles['texto_valor_posible']) ? null : $valores_posibles['texto_valor_posible'],
-                    'valor_posible' => empty($valores_posibles['valor_posible']) ? null : $valores_posibles['valor_posible']
+                    'num_valor_posible' => $valores_posibles['num_valor_posible'],
+                    'texto_valor_posible' => $valores_posibles['texto_valor_posible'],
+                    'valor_posible' => in_array($valores_posibles['valor_posible'], array("","-")) ? null : $valores_posibles['valor_posible']
                 );
                 $this->valores_posibles_model->guardar($data, $cve_valor_posible);
             }
