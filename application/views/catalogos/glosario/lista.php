@@ -17,15 +17,12 @@
     <div class="col-sm-12">
         <div style="min-height: 46vh">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-9">
                     <div class="row">
-                        <div class="col-sm-2 align-self-center">
-                            <p class="small"><strong>Clave</strong></p>
-                        </div>
                         <div class="col-sm-2 align-self-center">
                             <p class="small"><strong>Término</strong></p>
                         </div>
-                        <div class="col-sm-5 align-self-center">
+                        <div class="col-sm-7 align-self-center">
                             <p class="small"><strong>Definición</strong></p>
                         </div>
                     </div>
@@ -33,15 +30,12 @@
             </div>
             <div class="row">
                 <?php foreach ($glosario as $glosario_item) { ?>
-                <div class="col-sm-7 alternate-color">
+                <div class="col-sm-9 alternate-color">
                     <div class="row">
-                        <div class="col-sm-2 align-self-center">
-                            <p><?= $glosario_item['cve_termino'] ?></p>
-                        </div>
                         <div class="col-sm-2 align-self-center">
                             <p><a href="<?=base_url()?>glosario/detalle/<?=$glosario_item['cve_termino']?>"><?= $glosario_item['termino'] ?></a></p>
                         </div>
-                        <div class="col-sm-5 align-self-center">
+                        <div class="col-sm-7 align-self-center">
                             <p><?= $glosario_item['definicion'] ?></p>
                         </div>
                         <div class="col-sm-1">

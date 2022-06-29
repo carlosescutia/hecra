@@ -6,13 +6,7 @@ class Glosario_model extends CI_Model {
     }
 
     public function get_glosario() {
-        $sql = 'select g.* from glosario g ;';
-        $query = $this->db->query($sql);
-        return $query->result_array();
-    }
-
-    public function get_terminos() {
-        $sql = 'select * from glosario order by cve_termino ;';
+        $sql = 'select g.* from glosario g order by g.termino ;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }
