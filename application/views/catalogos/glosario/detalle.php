@@ -15,12 +15,6 @@
 
         <div class="col-md-12">
             <div class="form-group row">
-                <label for="cve_termino" class="col-sm-2 col-form-label">Clave</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cve_termino" id="cve_termino" value="<?=$glosario['cve_termino'] ?>" readonly>
-                </div>
-            </div>
-            <div class="form-group row">
                 <label for="termino" class="col-sm-2 col-form-label">Término</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="termino" id="termino" value="<?=$glosario['termino'] ?>">
