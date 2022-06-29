@@ -14,19 +14,25 @@
     <div class="col-md-12 mb-3">
         <?php
         foreach ($secciones_calidad_ra as $secciones_calidad_ra_item) { ?>
-            <div class="row">
-                <div class="col-md-7 mt-5">
-                    <h4><?= $secciones_calidad_ra_item['nom_seccion'] ?></h4>
-                </div>
-                <div class="col-md-5 mt-5 font-weight-bold">
-                    <?php
-                    foreach ($calidad_secciones as $calidad_secciones_item) {
-                        if ($calidad_secciones_item['cve_seccion'] == $secciones_calidad_ra_item['cve_seccion']) { ?>
-                            <div class="col-md-2 ">
-                                <?= number_format($calidad_secciones_item['calidad_seccion'], 3) ?>
-                            </div>
-                        <?php }
-                    } ?>
+            <div class="col-md-12 ml-3">
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <h4><?= $secciones_calidad_ra_item['nom_seccion'] ?></h4>
+                    </div>
+                    <div class="col-md-6 mt-5 font-weight-bold">
+                        <?php
+                        foreach ($calidad_secciones as $calidad_secciones_item) {
+                            if ($calidad_secciones_item['cve_seccion'] == $secciones_calidad_ra_item['cve_seccion']) { ?>
+                                <div class="row">
+                                    <div class="col-md-1 mr-3">
+                                    </div>
+                                    <div class="col-md-1 ml-3">
+                                        <?= number_format($calidad_secciones_item['calidad_seccion'], 3) ?>
+                                    </div>
+                                </div>
+                            <?php }
+                        } ?>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 ml-3">
@@ -42,10 +48,10 @@
                                 <?php
                                 foreach ($calidad_subsecciones as $calidad_subsecciones_item) {
                                     if ($calidad_subsecciones_item['cve_subseccion'] == $subsecciones_calidad_ra_item['cve_subseccion']) { ?>
-                                        <div class="col-md-2 ">
+                                        <div class="col-md-1 ml-3">
                                             <?= $calidad_subsecciones_item['peso'] ?>
                                         </div>
-                                        <div class="col-md-2 ">
+                                        <div class="col-md-2 ml-3">
                                             <?= number_format($calidad_subsecciones_item['valor_ryp'], 3) ?>
                                         </div>
                                     <?php }
@@ -99,38 +105,88 @@
     <div class="col-md-12 mb-3">
         <?php
         foreach ($secciones_calidad_pe as $secciones_calidad_pe_item) { ?>
-            <div class="row">
-                <div class="col-md-7 mt-5">
-                    <h4><?= $secciones_calidad_pe_item['nom_seccion'] ?></h4>
+            <div class="col-md-12 ml-3">
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <h4><?= $secciones_calidad_pe_item['nom_seccion'] ?></h4>
+                    </div>
+                    <div class="col-md-6 mt-5 font-weight-bold">
+                        <?php
+                        foreach ($calidad_secciones as $calidad_secciones_item) {
+                            if ($calidad_secciones_item['cve_seccion'] == $secciones_calidad_pe_item['cve_seccion']) { ?>
+                                <div class="row">
+                                    <div class="col-md-1 mr-3">
+                                    </div>
+                                    <div class="col-md-1 ml-3">
+                                        <?= number_format($calidad_secciones_item['calidad_seccion'], 3) ?>
+                                    </div>
+                                </div>
+                            <?php }
+                        } ?>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 ml-3">
                 <div class="row">
-                    <?php
-                    foreach ($datos_calidad_indicadores_pe as $datos_calidad_indicadores_item) { ?>
-                        <div class="col-md-1">
-                            <?= $datos_calidad_indicadores_item['cve_subseccion'] ?>
-                        </div>
-                        <div class="col-md-2">
-                            <?= $datos_calidad_indicadores_item['nom_subseccion'] ?>
-                        </div>
-                        <div class="col-md-1">
-                            <?= $datos_calidad_indicadores_item['cve_indicador_calidad'] ?>
-                        </div>
-                        <div class="col-md-2">
-                            <?= $datos_calidad_indicadores_item['nom_indicador_calidad'] ?>
-                        </div>
-                        <div class="col-md-1">
-                            <?= $datos_calidad_indicadores_item['peso'] ?>
-                        </div>
-                        <div class="col-md-1">
-                            <?= $datos_calidad_indicadores_item['valor'] ?>
-                        </div>
-                        <div class="col-md-1">
-                            <?= $datos_calidad_indicadores_item['valor_ryp'] ?>
-                        </div>
-                        <div class="col-md-3">
-                        </div>
+                    <?php 
+                    foreach ($subsecciones_calidad_pe as $subsecciones_calidad_pe_item) { 
+                        if ($subsecciones_calidad_pe_item['cve_seccion'] == $secciones_calidad_pe_item['cve_seccion']) { ?>
+                            <div class="col-md-6 mt-3 font-weight-bold">
+                                <?= $subsecciones_calidad_pe_item['nom_subseccion'] ?>
+                            </div>
+                            <div class="col-md-6 mt-3 font-weight-bold">
+                                <div class="row">
+                                <?php
+                                foreach ($calidad_subsecciones as $calidad_subsecciones_item) {
+                                    if ($calidad_subsecciones_item['cve_subseccion'] == $subsecciones_calidad_pe_item['cve_subseccion']) { ?>
+                                        <div class="col-md-1 ml-3">
+                                            <?= $calidad_subsecciones_item['peso'] ?>
+                                        </div>
+                                        <div class="col-md-2 ml-3">
+                                            <?= number_format($calidad_subsecciones_item['valor_ryp'], 3) ?>
+                                        </div>
+                                    <?php }
+                                } ?>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ml-3">
+                                <div class="row">
+                                    <?php 
+                                    foreach ($indicadores_calidad_pe as $indicadores_calidad_pe_item) { 
+                                        if ($indicadores_calidad_pe_item['cve_subseccion'] == $subsecciones_calidad_pe_item['cve_subseccion']) { ?>
+                                            <div class="col-md-4 border-bottom"> 
+                                                <?= $indicadores_calidad_pe_item['nom_indicador_calidad'] ?>
+                                            </div>
+                                            <div class="col-md-8 ">
+                                                <div class="row">
+                                                <?php
+                                                foreach ($datos_calidad_indicadores as $datos_calidad_indicadores_item) {
+                                                    if ($datos_calidad_indicadores_item['cve_indicador_calidad'] == $indicadores_calidad_pe_item['cve_indicador_calidad']) { ?>
+                                                        <div class="col-md-1">
+                                                        </div>
+                                                        <div class="col-md-1 border-bottom">
+                                                            <?= $datos_calidad_indicadores_item['valor'] ?>
+                                                        </div>
+                                                        <div class="col-md-1 border-bottom">
+                                                            <?= $datos_calidad_indicadores_item['valor_max_sna'] ?>
+                                                        </div>
+                                                        <div class="col-md-1 border-bottom">
+                                                            <?= $datos_calidad_indicadores_item['peso'] ?>
+                                                        </div>
+                                                        <div class="col-md-1 border-bottom">
+                                                            <?= number_format($datos_calidad_indicadores_item['valor_ryp'], 3) ?>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                        </div>
+                                                    <?php }
+                                                } ?>
+                                                </div>
+                                            </div>
+                                        <?php }
+                                    } ?>
+                                </div>
+                            </div>
+                        <?php } ?>
                     <?php } ?>
                 </div>
             </div>
