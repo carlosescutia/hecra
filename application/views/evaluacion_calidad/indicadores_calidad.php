@@ -5,6 +5,9 @@
             <div class="col-md-10">
                 <h3>Indicadores de calidad <?=$periodos['nom_dependencia']?> <?=$periodos['nom_periodo']?></h3>
             </div>
+            <div class="col-md-2">
+                <p><a class="btn btn-primary" href="javascript:window.print();">Descargar reporte</a></p>
+            </div>
         </div>
     </div>
 

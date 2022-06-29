@@ -18,3 +18,11 @@
 <p>En la sección de Cuestionarios, están habilitados los cuestionarios HECRA para aplicar a los registros administrativos solicitados. Así como el cuestionario para identificar los registros administrativos cuando partimos de los indicadores del programa de gobierno. En cada uno siga las instrucciones indicadas y consulte la  guía de llenado en cada pregunta.</p>
 
 <p>En caso de requerir asesoría adicional, favor de contactarse con Mario Hernández, al teléfono 4721037700 extensión 107, o al correo: mhernanm@guanajuato.gob.mx</p>
+
+<hr class="mt-5">
+
+<h6>Notas:</h6>
+<ul>
+    <li>La herramienta ya se ha utilizado con el apoyo del Banco Mundial.</li>
+    <li>INEGI es el Titular de los Derechos Patrimoniales de la <a href="https://www.inegi.org.mx/mejorespracticas/hecra/" target="_blank">herramienta</a></li>
+</ul>
