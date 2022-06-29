@@ -134,6 +134,13 @@ CREATE TABLE respuestas (
     valor text
 );
 
+DROP TABLE IF EXISTS glosario;
+CREATE TABLE glosario (
+    cve_termino serial,
+    termino text,
+    definicion text
+);
+
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
     cve_usuario serial, 
