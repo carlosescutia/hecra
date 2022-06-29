@@ -20,6 +20,9 @@
                 <div class="col-md-4">
                     <?php include "tipo_preguntas/boton.php" ?>
                 </div>
+                <div class="col-md-4">
+                    <?php include "glosario/boton.php" ?>
+                </div>
             </div>
         </div>
         <div class="col-md-3 p-3 border bg-light">
