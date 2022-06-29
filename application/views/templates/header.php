@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?php echo base_url('img/favicon.ico'); ?>" sizes="16x16" type="image/png" />
 
-        <title>Sistema Hecra Iplaneg</title>
+        <title>Sistema Hecra Iplaneg — Sistema Estatal de Información Estadística y Geográfica</title>
 
         <!-- custom css -->
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/base.css" />
@@ -55,7 +55,7 @@
             <!-- opciones del menu -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="col-sm-6 mr-5">
-                    <h5 class="my-0 mr-md-auto texto-titulo">Sistema Hecra Iplaneg</h5>
+                    <h5 class="my-0 mr-md-auto texto-titulo">Sistema Hecra Iplaneg — Sistema Estatal de Información Estadística y Geográfica</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
                         <?php if (in_array('01', $accesos_sistema_rol)) { ?>
@@ -63,6 +63,9 @@
                         <?php } ?>
                         <?php if (in_array('02', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios_contestados">Cuestionarios</a></li>
+                        <?php } ?>
+                        <?php if (in_array('06', $accesos_sistema_rol)) { ?>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>glosario">Glosario</a></li>
                         <?php } ?>
                         <?php if (in_array('04', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes">Reportes</a></li>
