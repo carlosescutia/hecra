@@ -93,5 +93,6 @@
     <?php include 'js/grafico_datos.js'; ?>
     <?php include 'js/grafico_subsecciones_datos.js'; ?>
     <?php include 'js/grafico_producto.js'; ?>
+    <?php include 'js/grafico_subsecciones_producto.js'; ?>
 
 </main>

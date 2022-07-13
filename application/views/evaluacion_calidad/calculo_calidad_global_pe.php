@@ -16,6 +16,7 @@ $indicadores_calidad_pe = array();
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 27;
+$nom_subseccion = 'Comparabilidad';
 $peso1 = 0.2;
 $peso2 = 0.236;
 $valor64 = 0;
@@ -62,6 +63,7 @@ if ($valor_ryp64 == 0) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -76,6 +78,7 @@ array_push($indicadores_calidad_pe, array(
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 28;
+$nom_subseccion = 'Relevancia';
 $peso1 = 0.2;
 $peso2 = 0.236;
 // calcular valores mediante suma producto
@@ -87,6 +90,7 @@ foreach ($datos_calidad_indicadores_pe as $datos_calidad_indicadores_pe_item) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -113,6 +117,7 @@ array_push($indicadores_calidad_pe, array(
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 29;
+$nom_subseccion = 'Coherencia';
 $peso1 = 0.15;
 $peso2 = 0;
 $valor69 = 0;
@@ -175,6 +180,7 @@ if ($valor_ryp69 == 0) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -190,6 +196,7 @@ array_push($indicadores_calidad_pe, array(
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 30;
+$nom_subseccion = 'Disponibilidad y transparencia';
 $peso1 = 0.15;
 $peso2 = 0.176;
 // calcular valores mediante suma producto
@@ -201,6 +208,7 @@ foreach ($datos_calidad_indicadores_pe as $datos_calidad_indicadores_pe_item) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -219,6 +227,7 @@ array_push($indicadores_calidad_pe, array(
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 31;
+$nom_subseccion = 'Precisión y exactitud';
 $peso1 = 0.15;
 $peso2 = 0.176;
 $valor73 = 0;
@@ -264,6 +273,7 @@ if ($valor_ryp73 == 0) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -282,6 +292,7 @@ array_push($indicadores_calidad_pe, array(
 $valor = 0;
 $valor_ryp = 0;
 $curr_subseccion = 32;
+$nom_subseccion = 'Oportunidad y puntualidad';
 $peso1 = 0.15;
 $peso2 = 0.176;
 $valor80 = 0;
@@ -327,6 +338,7 @@ if ($valor_ryp80 == 0) {
 }
 array_push($indicadores_calidad_pe, array(
         'subseccion' => $curr_subseccion, 
+        'nom_subseccion' => $nom_subseccion,
         'valor' => $valor,
         'valor_ryp' => $valor_ryp,
         'peso1' => $peso1,
@@ -383,3 +395,10 @@ array_push($calidad_pe, array(
         'valor_ryp' => $valor_ryp
     )
 );
+
+$valores_grafico_producto_etiquetas = array();
+$valores_grafico_producto_valores = array();
+foreach ($indicadores_calidad_pe as $indicadores_calidad_pe_item) {
+    array_push($valores_grafico_producto_etiquetas, $indicadores_calidad_pe_item['nom_subseccion']);
+    array_push($valores_grafico_producto_valores, $indicadores_calidad_pe_item['valor']);
+}
