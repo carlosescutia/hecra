@@ -174,15 +174,17 @@
 
         </div>
 
-    </form>
-
-
     <hr />
 
     <div class="form-group row">
         <div class="col-sm-10">
             <a href="<?=base_url()?>cuestionarios_contestados" class="btn btn-secondary">Volver</a>
         </div>
+        <div class="col-sm-2 text-right">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
     </div>
+
+    </form>
 
 </main>
