@@ -227,7 +227,7 @@ Se obtienen los demás valores para el cálculo del dato de calidad de la secci�
 */
 CREATE VIEW datos_calidad_indicadores AS
 SELECT 
-    prc.cve_periodo, prc.cve_seccion, prc.cve_subseccion, prc.nom_subseccion, prc.cve_indicador_calidad, prc.nom_indicador_calidad, prc.valor, icvg.valor_grafico, (case when prc.valor is null then 0 else ic.valor_maximo end) as valor_max_sna, ic.peso, (case when prc.valor is null then 0 else (prc.valor / ic.valor_maximo) end) as valor_ryp 
+    prc.cve_periodo, prc.cve_seccion, prc.cve_subseccion, prc.nom_subseccion, prc.cve_indicador_calidad, prc.nom_indicador_calidad, prc.valor, icvg.valor_grafico, (case when (prc.valor is null) or (prc.valor = 0) then 0 else ic.valor_maximo end) as valor_max_sna, ic.peso, (case when prc.valor is null then 0 else (prc.valor / ic.valor_maximo) end) as valor_ryp 
 FROM 
     promedio_respuestas_calidad prc 
     inner join indicadores_calidad ic on prc.cve_pregunta = ic.cve_pregunta and prc.cve_subpregunta IS NOT DISTINCT FROM ic.cve_subpregunta 
