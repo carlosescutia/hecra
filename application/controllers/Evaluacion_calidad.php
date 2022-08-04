@@ -67,6 +67,10 @@ class Evaluacion_calidad extends CI_Controller {
             $data['indicadores_calidad_pe'] = $this->evaluacion_calidad_model->get_indicadores_calidad_cuestionario(2);
             $data['datos_calidad_indicadores_pe'] = $this->evaluacion_calidad_model->get_datos_calidad_indicadores_pe_periodo($cve_periodo);
 
+            $data['calidad_global_secciones_rraa'] = $this->evaluacion_calidad_model->get_calidad_global_secciones_rraa_periodo($cve_periodo);
+            $data['valores_grafico'] = $this->evaluacion_calidad_model->get_valores_grafico_periodo($cve_periodo);
+            $data['indice_calidad_global_rraa'] = $this->evaluacion_calidad_model->get_indice_calidad_global_rraa_periodo($cve_periodo);
+
             $this->load->view('templates/header', $data);
             $this->load->view('evaluacion_calidad/indicadores_calidad', $data);
             $this->load->view('templates/footer');
