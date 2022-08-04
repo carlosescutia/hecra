@@ -1,5 +1,9 @@
 <main role="main" class="ml-sm-auto px-4">
 
+    <?php include 'calculo_calidad_global_pe.php'; ?>
+    <?php include 'calculo_calidad_global_rraa.php'; ?>
+    <?php include 'calculo_calidad_global.php'; ?>
+
     <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
         <div class="row">
             <div class="col-md-10">
@@ -10,6 +14,42 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-md-12 mt-1">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Dimensión</h4>
+            </div>
+            <div class="col-md-6 font-weight-bold">
+                <div class="row">
+                    <div class="col-md-1 mr-3">
+                        Resultado
+                    </div>
+                    <div class="col-md-1 ml-3">
+                        Indice
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Evaluación de la calidad global</p>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-1 mr-3">
+                        <?= number_format($indicador_calidad_global, 3) ?>
+                    </div>
+                    <div class="col-md-1 ml-3"> 
+                        <?= number_format($indice_calidad_global_rraa['valor'] + ($calidad_pe[0]['valor_ryp'] * 0.25), 3) ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
 
     <div class="col-md-12 mb-3">
         <?php
