@@ -23,7 +23,7 @@
             <div class="form-group row">
                 <label for="definicion" class="col-sm-2 col-form-label">Definición</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="definicion" id="definicion">
+                    <textarea class="form-control" name="definicion" id="definicion" rows="5"></textarea>
                 </div>
             </div>
         </div>
