@@ -6,7 +6,7 @@ class Cuestionarios_model extends CI_Model {
     }
 
     public function get_cuestionarios() {
-        $sql = 'select * from cuestionarios order by cve_cuestionario;';
+        $sql = 'select * from cuestionarios order by nom_cuestionario;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }
