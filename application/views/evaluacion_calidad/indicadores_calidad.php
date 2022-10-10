@@ -7,7 +7,7 @@
     <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
         <div class="row">
             <div class="col-md-10">
-                <h3>Indicadores de calidad <?=$periodos['nom_dependencia']?> <?=$periodos['nom_periodo']?></h3>
+                <h3>Indicadores de calidad: <?=$periodos['nom_periodo']?>, <?=$periodos['nom_dependencia']?></h3>
             </div>
             <div class="col-md-2">
                 <p><a class="btn btn-primary" href="javascript:window.print();">Descargar reporte</a></p>
@@ -19,7 +19,6 @@
     <div class="col-md-12 mt-1">
         <div class="row">
             <div class="col-md-6">
-                <h4>Dimensión</h4>
             </div>
             <div class="col-md-6 font-weight-bold">
                 <div class="row">
@@ -34,7 +33,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>Evaluación de la calidad global</p>
+                <h3>Evaluación de la calidad global</h3>
             </div>
             <div class="col-md-6">
                 <div class="row">
@@ -56,10 +55,27 @@
         foreach ($secciones_calidad_ra as $secciones_calidad_ra_item) { ?>
             <div class="col-md-12 ml-3">
                 <div class="row">
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-5 mt-5">
+                    </div>
+                    <div class="col-md-7 mt-5 font-weight-bold">
+                        <div class="row">
+                            <div class="col-md-1 ml-4">
+                                valor
+                            </div>
+                            <div class="col-md-1 ml-3">
+                                resultado
+                            </div>
+                            <div class="col-md-1 ml-4">
+                                índice
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <h4><?= $secciones_calidad_ra_item['nom_seccion'] ?></h4>
                     </div>
-                    <div class="col-md-6 mt-5 font-weight-bold">
+                    <div class="col-md-6 font-weight-bold">
                         <?php
                         foreach ($calidad_secciones as $calidad_secciones_item) {
                             if ($calidad_secciones_item['cve_seccion'] == $secciones_calidad_ra_item['cve_seccion']) { ?>
@@ -114,10 +130,9 @@
                                                         <div class="col-md-1">
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
-                                                            <?= $datos_calidad_indicadores_item['valor'] ?>
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
-                                                            <?= $datos_calidad_indicadores_item['valor_max_sna'] ?>
+                                                            <?= $datos_calidad_indicadores_item['valor'] ?>
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
                                                             <?= $datos_calidad_indicadores_item['peso'] ?>
@@ -147,10 +162,27 @@
         foreach ($secciones_calidad_pe as $secciones_calidad_pe_item) { ?>
             <div class="col-md-12 ml-3">
                 <div class="row">
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-5 mt-5">
+                    </div>
+                    <div class="col-md-7 mt-5 font-weight-bold">
+                        <div class="row">
+                            <div class="col-md-1 ml-4">
+                                valor
+                            </div>
+                            <div class="col-md-1 ml-3">
+                                resultado
+                            </div>
+                            <div class="col-md-1 ml-4">
+                                índice
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <h4><?= $secciones_calidad_pe_item['nom_seccion'] ?></h4>
                     </div>
-                    <div class="col-md-6 mt-5 font-weight-bold">
+                    <div class="col-md-6 font-weight-bold">
                         <?php
                         foreach ($calidad_secciones as $calidad_secciones_item) {
                             if ($calidad_secciones_item['cve_seccion'] == $secciones_calidad_pe_item['cve_seccion']) { ?>
@@ -205,10 +237,9 @@
                                                         <div class="col-md-1">
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
-                                                            <?= $datos_calidad_indicadores_item['valor'] ?>
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
-                                                            <?= $datos_calidad_indicadores_item['valor_max_sna'] ?>
+                                                            <?= $datos_calidad_indicadores_item['valor'] ?>
                                                         </div>
                                                         <div class="col-md-1 border-bottom">
                                                             <?= $datos_calidad_indicadores_item['peso'] ?>
