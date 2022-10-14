@@ -64,6 +64,9 @@
                         <?php if (in_array('02', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>cuestionarios_contestados">Cuestionarios</a></li>
                         <?php } ?>
+                        <?php if (in_array('03', $accesos_sistema_rol)) { ?>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>doc/guia.pdf" target="_blank">Guía</a></li>
+                        <?php } ?>
                         <?php if (in_array('06', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>glosario">Glosario</a></li>
                         <?php } ?>
