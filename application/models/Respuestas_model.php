@@ -35,12 +35,11 @@ class Respuestas_model extends CI_Model {
         }
     }
 
-    public function eliminar($cve_cuestionario_contestado, $cve_pregunta, $cve_subpregunta)
+    public function eliminar($cve_cuestionario_contestado)
     {
-        $this->db->where('cve_cuestionario_contestado', $cve_respuesta);
-        $this->db->where('cve_pregunta', $cve_pregunta);
-        $this->db->where('cve_subpregunta', $cve_subpregunta);
-        $this->db->delete('respuestas');
+        $this->db->where('cve_cuestionario_contestado', $cve_cuestionario_contestado);
+        $result = $this->db->delete('respuestas');
+        return $result;
     }
 
 }

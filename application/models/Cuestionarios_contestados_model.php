@@ -15,7 +15,17 @@ class Cuestionarios_contestados_model extends CI_Model {
     }
 
     public function get_cuestionario_contestado($cve_cuestionario_contestado) {
-        $sql = "select cc.*, c.nom_cuestionario, c.nom_corto_cuestionario, p.nom_periodo from cuestionarios_contestados cc left join cuestionarios c on cc.cve_cuestionario = c.cve_cuestionario left join periodos p on cc.cve_periodo = p.cve_periodo where cc.cve_cuestionario_contestado = ? ;";
+        $sql = ''
+			.'select  '
+			.'cc.*, d.nom_dependencia, c.nom_cuestionario, c.nom_corto_cuestionario, p.nom_periodo  '
+			.'from  '
+			.'cuestionarios_contestados cc  '
+			.'left join cuestionarios c on cc.cve_cuestionario = c.cve_cuestionario  '
+			.'left join periodos p on cc.cve_periodo = p.cve_periodo  '
+			.'left join dependencias d on p.cve_dependencia = d.cve_dependencia '
+			.'where  '
+			.'cc.cve_cuestionario_contestado = ? ; '
+            .'';
         $query = $this->db->query($sql, array($cve_cuestionario_contestado));
         return $query->row_array();
     }

@@ -15,6 +15,7 @@ class Cuestionarios_contestados extends CI_Controller {
         $this->load->model('respuestas_model');
         $this->load->model('subpreguntas_model');
         $this->load->model('subvalores_posibles_model');
+        $this->load->model('bitacora_model');
     }
 
     public function index()
@@ -130,7 +131,32 @@ class Cuestionarios_contestados extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
 
+            $cuest_c = $this->cuestionarios_contestados_model->get_cuestionario_contestado($cve_cuestionario_contestado);
+            $separador = ' -> ';
+
+            $usuario = $this->session->userdata('usuario');
+            $nom_usuario = $this->session->userdata('nom_usuario');
+            $nom_dependencia = $this->session->userdata('nom_dependencia');
+            $accion = 'eliminó';
+            $entidad = 'cuestionarios_contestados';
+            $valor = $cuest_c['nom_dependencia'] . $separador . $cuest_c['nom_periodo'] . $separador . $cve_cuestionario_contestado . $separador . $cuest_c['nom_cuestionario'] ; 
+
+            $data = array(
+                'fecha' => date("Y-m-d"),
+                'hora' => date("H:i"),
+                'origen' => $_SERVER['REMOTE_ADDR'],
+                'usuario' => $usuario,
+                'nom_usuario' => $nom_usuario,
+                'nom_dependencia' => $nom_dependencia,
+                'accion' => $accion,
+                'entidad' => $entidad,
+                'valor' => $valor
+            );
+            $this->bitacora_model->guardar($data);
+
             $this->cuestionarios_contestados_model->eliminar($cve_cuestionario_contestado);
+            $this->respuestas_model->eliminar($cve_cuestionario_contestado);
+
             redirect('cuestionarios_contestados');
 
         } else {
